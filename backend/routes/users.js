@@ -5,8 +5,8 @@ const OAuth2Strategy = require('passport-oauth2');
 const router = express.Router();
 
 // Remplacez les valeurs suivantes par celles de votre compte Riot Games Developer
-const clientID = 'RGAPI-e4084b9b-b6d1-4086-8235-ddd67067c91a';
-const clientSecret = 'RGAPI-e4084b9b-b6d1-4086-8235-ddd67067c91a';
+const clientID = 'a';
+const clientSecret = 'a';
 const callbackURL = 'http://localhost:3000/auth/riot/callback';
 
 router.get('/', function(req, res, next) {
