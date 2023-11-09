@@ -6,13 +6,13 @@ const NavBar = () => {
   return (
     <Menu mode="horizontal" theme="light" >
       <Menu.Item key="home">
-        <Link to="/">Home Page</Link>
+        <Link to="/">Page d'accueil</Link>
       </Menu.Item>
       <Menu.Item key="login">
-        <Link to="/login">Login</Link>
+        <Link to="/login">Connexion</Link>
       </Menu.Item>
       <Menu.Item key="register">
-        <Link to="/register">Register</Link>
+        <Link to="/register">Inscription</Link>
       </Menu.Item>
     </Menu>
   );

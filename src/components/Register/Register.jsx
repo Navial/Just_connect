@@ -1,6 +1,6 @@
 import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, Card } from "antd";
 import { Link } from "react-router-dom";
 const Register = () => {
   const onFinish = (values) => {
@@ -15,60 +15,62 @@ const Register = () => {
         height: "100vh",
       }}
     >
-      <Form
-        name="normal_register"
-        className="register-form"
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-      >
-        <Form.Item
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: "Please input your Username!",
-            },
-          ]}
+      <Card title="Inscription">
+        <Form
+          name="normal_register"
+          className="register-form"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
         >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Nom d'utilisateur"
-          />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your Password!",
-            },
-          ]}
-        >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Mot de passe"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Se souvenir de moi</Checkbox>
-          </Form.Item>
-        </Form.Item>
-
-        <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
+          <Form.Item
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Username!",
+              },
+            ]}
           >
-            Log in
-          </Button>
-          Ou <Link to="/login"> se connecter maintenant !</Link>
-        </Form.Item>
-      </Form>
+            <Input
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="Nom d'utilisateur"
+            />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Password!",
+              },
+            ]}
+          >
+            <Input
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Mot de passe"
+            />
+          </Form.Item>
+          <Form.Item>
+            <Form.Item name="remember" valuePropName="checked" noStyle>
+              <Checkbox>Se souvenir de moi</Checkbox>
+            </Form.Item>
+          </Form.Item>
+
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+            >
+              Log in
+            </Button>
+            Ou <Link to="/login"> se connecter maintenant !</Link>
+          </Form.Item>
+        </Form>
+      </Card>
     </div>
   );
 };
