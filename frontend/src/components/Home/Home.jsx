@@ -1,6 +1,18 @@
 import React from "react";
+import {useEffect} from 'react';
 
 const Home = () => {
+  useEffect(() => {
+    const query = window.location.search;
+    const urlParams = new URLSearchParams(query);
+    const codeParam = urlParams.get("code");
+    console.log(codeParam);
+
+    
+
+  },[]);  
+
+
   return (
     <div
       style={{
