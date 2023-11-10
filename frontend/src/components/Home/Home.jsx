@@ -28,6 +28,18 @@ const Home = () => {
     }    
   },[]);  
 
+  async function getUserData(){
+    await fetch("http://localhost:5174/github/getUserData", {
+      method: "GET",
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("accessToken");
+      }
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      console.table(data);
+    });
+  }
 
   return (
     <div
