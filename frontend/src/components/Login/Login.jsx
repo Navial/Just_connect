@@ -2,7 +2,7 @@ import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
 import { Link } from "react-router-dom";
-import GithubBtn from "../Login/github_button";
+import GithubBtn from "../Login/GithubButton";
 
 const Login = () => {
   const onFinish = (values) => {

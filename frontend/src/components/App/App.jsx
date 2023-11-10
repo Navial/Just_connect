@@ -7,7 +7,7 @@ import Home from "../Home/Home";
 
 const App = () => {
   return (
-    <>
+    <>      
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />

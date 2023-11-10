@@ -10,14 +10,15 @@ const fetch = (...args) =>
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var githubRouter = require('./routes/github_route');
 
 var app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
 
-app.listen(5173, function () {
-    console.log("server running on 5137");
+app.listen(5174, function () {
+    console.log("server running on 5174");
 })
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/github', githubRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
