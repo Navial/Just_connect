@@ -4,6 +4,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NavBar from "../Navbar/Navbar";
 import Home from "../Home/Home";
+
 const App = () => {
   return (
     <>

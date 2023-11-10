@@ -2,6 +2,7 @@ import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
 import { Link } from "react-router-dom";
+import GithubBtn from "../Login/github_button";
 
 const Login = () => {
   const onFinish = (values) => {
@@ -68,8 +69,10 @@ const Login = () => {
             >
               Log in
             </Button>
-            Ou <Link to="/register"> s'inscrire maintenant ! </Link>
+             Ou <Link to="/register"> s'inscrire maintenant ! </Link>
           </Form.Item>
+          <hr></hr>
+            <GithubBtn></GithubBtn>
         </Form>
       </Card>
     </div>
