@@ -1,9 +1,16 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "components/App/App";
 
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import config from "../../services/config";
+
+const googleClientId = config.googleClientId;
+
 const AppLoader = () => (
   <Router>
-    <App />
+    <GoogleOAuthProvider clientId={googleClientId}>
+      <App />
+    </GoogleOAuthProvider>
   </Router>
 );
 
