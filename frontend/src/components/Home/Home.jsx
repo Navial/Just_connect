@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Login/DiscordButton";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       }}
     >
       <h1>Vous êtes sur la page d'accueil</h1>
+      <Button></Button>
     </div>
   );
 };
