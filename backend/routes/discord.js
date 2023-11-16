@@ -4,6 +4,7 @@ const axios = require('axios')
 
 
 
+
 const CLIENT_ID = '1174682089338183772'
 const CLIENT_SECRET = '-q2j9dJchOJ2KcZAhKZpMAy0PAMY22qr'
 const REDIRECT_URI = "http://localhost:3000/discord/callback"
@@ -41,13 +42,13 @@ router.get("/callback", async (request, res) => {
 
 
 router.get('/userInformations', async (req, res) => {
-    if (!access_token) {
-        console.log("Accès token manquant, connectez-vous avec Discord");
-        res.redirect("login");
-        return;
-    }
-
     try {
+        if (!access_token) {
+            console.log("Accès token manquant, connectez-vous avec Discord");
+            res.redirect("login");
+            return;
+        }
+
         const userResponse = await axios.get('https://discord.com/api/users/@me', {
             headers: {
                 Authorization: `Bearer ${access_token}`,
@@ -58,8 +59,10 @@ router.get('/userInformations', async (req, res) => {
 
         res.json(userInfo);
     } catch (error) {
-        console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error.response ? error.response.data : error.message);
-        res.send('Erreur lors de la récupération des informations de l\'utilisateur.');
+        res.status(error.response?.status || 500).json({
+            error: "Erreur lors de la récupération des informations de l'utilisateur.",
+            message: error.message,
+        });
     }
 });
 

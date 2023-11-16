@@ -4,7 +4,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NavBar from "../Navbar/Navbar";
 import Home from "../Home/Home";
-import UserDiscordPage from "../Discord/UserDiscord";
+import UserDiscordPage from "../Discord/UserDiscordPage";
 const App = () => {
   return (
     <>
