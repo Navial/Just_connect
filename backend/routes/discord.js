@@ -36,7 +36,7 @@ router.get("/callback", async (request, res) => {
             }
         })
         access_token = response.data.access_token;
-        res.redirect('user');
+        res.redirect('http://localhost:5173/userDiscord');
 })
 
 
