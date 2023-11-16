@@ -67,7 +67,8 @@ router.get('/userInformations', async (req, res) => {
 
 router.get('/userGuilds', async (req, res) => {
     if (!access_token) {
-        res.send('Erreur : Access token manquant.');
+        console.log("Accès token manquant, connectez-vous avec Discord");
+        res.redirect("login");
         return;
     }
 
