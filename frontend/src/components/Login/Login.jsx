@@ -2,12 +2,14 @@ import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
 import { Link } from "react-router-dom";
+import { FaTwitch } from 'react-icons/fa'; // Importez l'icône Twitch de Font Awesome
 
 const Login = () => {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
   return (
+    
     <div
       style={{
         display: "flex",
@@ -71,7 +73,14 @@ const Login = () => {
             Ou <Link to="/register"> s'inscrire maintenant ! </Link>
           </Form.Item>
         </Form>
-      </Card>
+        <div>
+
+        <button className="btn-twitch">
+        <FaTwitch /> Connect with Twitch
+      </button>        
+    </div>
+
+  </Card>
     </div>
   );
 };
