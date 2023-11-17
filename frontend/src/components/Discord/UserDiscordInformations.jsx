@@ -1,10 +1,12 @@
 import React from 'react';
+import  {useEffect } from "react";
+import axios from 'axios';
 import "./UserDiscordPage.css"
 
 import { Container, ListGroup, Row, Col, Tab } from 'react-bootstrap';
 
 const UserDiscordInformation = ({ user, guilds }) => {
-  console.log(guilds)
+  
 
   return (
     <Container className="mt-4 text-discord">
@@ -15,6 +17,7 @@ const UserDiscordInformation = ({ user, guilds }) => {
             <ul className="list-group user-info-list">
               <li className="list-group-item ">Nom: {user.username}</li>
               <li className="list-group-item">Global Name: {user.global_name}</li>
+              <li className="list-group-item">Langue utilisée sur discord : {user.locale}</li>
               <li className="list-group-item">
                 Avatar: <img src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} alt="Avatar" className="img-fluid" />
               </li>

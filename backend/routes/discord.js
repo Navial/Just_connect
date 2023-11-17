@@ -14,7 +14,7 @@ var access_token;
 
 
 router.get('/login', async function(req, res, next) {
-    const redirect_url = `https://discord.com/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify%20guilds&redirect_uri=${REDIRECT_URI}&prompt=consent`
+    const redirect_url = `https://discord.com/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify%20guilds%20guilds.read&redirect_uri=${REDIRECT_URI}&prompt=consent`
     res.redirect(redirect_url);
   });
 
@@ -86,9 +86,12 @@ router.get('/userGuilds', async (req, res) => {
 
         res.json(userGuilds);
     } catch (error) {
-        console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error.response ? error.response.data : error.message);
-        res.send('Erreur lors de la récupération des informations de l\'utilisateur.');
+        console.error('Erreur lors de la récupération des serveurs de l\'utilisateur :', error.response ? error.response.data : error.message);
+        res.send('Erreur lors de la récupération des serveurs de l\'utilisateur.');
     }
 });
+
+
+
 
 module.exports =  router;
