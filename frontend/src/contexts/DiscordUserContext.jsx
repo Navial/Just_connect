@@ -15,13 +15,13 @@ const ProviderWrapper = (props) => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get(API_URL + "/discord/userInformations");
+            const response = await axios.get(API_URL + "/discord/userInformations", { withCredentials: true });
             setUser(response.data);
           } catch (error) {
             console.error("Erreur lors de la récupération des données de l'utilisateur :", error);
           }
           try {
-            const response2 = await axios.get(API_URL + "/discord/userGuilds");
+            const response2 = await axios.get(API_URL + "/discord/userGuilds", { withCredentials: true });
             setUserGuilds(response2.data);
           } catch (error) {
             console.error("Erreur lors de la récupération des données de l'utilisateur :", error);

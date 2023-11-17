@@ -1,49 +1,75 @@
-const  express = require('express');
-const  router = express.Router();
-const axios = require('axios')
+const express = require('express');
+const router = express.Router();
+const axios = require('axios');
 
 
 
-
-const CLIENT_ID = '1174682089338183772'
-const CLIENT_SECRET = '-q2j9dJchOJ2KcZAhKZpMAy0PAMY22qr'
-const REDIRECT_URI = "http://localhost:3000/discord/callback"
-
-
-var access_token;
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const DISCORD_API_URL = 'https://discord.com/api';
 
 
-router.get('/login', async function(req, res, next) {
-    const redirect_url = `https://discord.com/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify%20guilds&redirect_uri=${REDIRECT_URI}&prompt=consent`
+
+router.get('/login', async (req, res) => {
+
+    const redirect_url = `${DISCORD_API_URL}/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify%20guilds&redirect_uri=${REDIRECT_URI}&prompt=consent`;
     res.redirect(redirect_url);
-  });
+});
 
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+});
 
-
-router.get("/callback", async (request, res) => {
-    const code = request.query["code"]
-    const response = await axios.post('https://discord.com/api/oauth2/token',
-        new URLSearchParams({
-            'client_id': CLIENT_ID,
-            'client_secret': CLIENT_SECRET,
-            'grant_type': 'authorization_code',
-            'redirect_uri': REDIRECT_URI,
-            'code': code
-        }),
-        {
-            headers:
-            {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        })
-        access_token = response.data.access_token;
-        res.redirect('http://localhost:5173/userDiscord');
-})
-
-
-router.get('/userInformations', async (req, res) => {
+router.get('/callback', async (req, res, next) => {
     try {
-        if (!access_token) {
+        const code = req.query["code"];
+
+        if (!code) {
+            console.error("Le code d'autorisation est manquant.");
+            return res.status(400).send("Le code d'autorisation est manquant.");
+        }
+
+        const response = await axios.post(
+            `${DISCORD_API_URL}/oauth2/token`,
+            new URLSearchParams({
+                'client_id': CLIENT_ID,
+                'client_secret': CLIENT_SECRET,
+                'grant_type': 'authorization_code',
+                'redirect_uri': REDIRECT_URI,
+                'code': code
+            }),
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }
+        );
+
+        if (response.data.error) {
+            console.error("Erreur lors de l'échange du code contre un jeton d'accès:", response.data.error_description);
+            return res.status(response.status || 500).send(response.data);
+        }
+
+        req.session.access_token = response.data.access_token;
+        req.session.logged = true;
+        
+        console.log("premier", req.session)
+        res.redirect('http://localhost:5173/userDiscord');
+        
+    } catch (error) {
+        console.error("Erreur lors du traitement du callback:", error.message);
+        res.status(500).send("Erreur lors du traitement du callback.");
+    }
+});
+
+
+
+router.get('/userInformations', async (req, res, next) => {
+    console.log(req.session)
+    try {
+        if (!req.session.access_token) {
             console.log("Accès token manquant, connectez-vous avec Discord");
             res.redirect("login");
             return;
@@ -51,7 +77,7 @@ router.get('/userInformations', async (req, res) => {
 
         const userResponse = await axios.get('https://discord.com/api/users/@me', {
             headers: {
-                Authorization: `Bearer ${access_token}`,
+                Authorization: `Bearer ${req.session.access_token}`,  
             },
         });
 
@@ -66,10 +92,8 @@ router.get('/userInformations', async (req, res) => {
     }
 });
 
-
-
-router.get('/userGuilds', async (req, res) => {
-    if (!access_token) {
+router.get('/userGuilds', async (req, res, next) => {
+    if (!req.session.access_token) {
         console.log("Accès token manquant, connectez-vous avec Discord");
         res.redirect("login");
         return;
@@ -78,7 +102,7 @@ router.get('/userGuilds', async (req, res) => {
     try {
         const userResponse = await axios.get('https://discord.com/api/users/@me/guilds', {
             headers: {
-                Authorization: `Bearer ${access_token}`,
+                Authorization: `Bearer ${req.session.access_token}`,  
             },
         });
 
