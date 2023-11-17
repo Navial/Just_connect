@@ -27,8 +27,7 @@ router.get('/callback', async (req, res, next) => {
         const code = req.query["code"];
 
         if (!code) {
-            console.error("Le code d'autorisation est manquant.");
-            return res.status(400).send("Le code d'autorisation est manquant.");
+            return res.status(400).json({ error: "Le code d'autorisation est manquant." });
         }
 
         const response = await axios.post(
@@ -49,40 +48,35 @@ router.get('/callback', async (req, res, next) => {
 
         if (response.data.error) {
             console.error("Erreur lors de l'échange du code contre un jeton d'accès:", response.data.error_description);
-            return res.status(response.status || 500).send(response.data);
+            return res.status(response.status || 500).json({ error: response.data.error_description });
         }
 
         req.session.access_token = response.data.access_token;
         req.session.logged = true;
-        
-        console.log("premier", req.session)
+
+        console.log("premier", req.session);
         res.redirect('http://localhost:5173/userDiscord');
         
     } catch (error) {
         console.error("Erreur lors du traitement du callback:", error.message);
-        res.status(500).send("Erreur lors du traitement du callback.");
+        res.status(500).json({ error: "Erreur lors du traitement du callback." });
     }
 });
 
 
-
 router.get('/userInformations', async (req, res, next) => {
-    console.log(req.session)
     try {
         if (!req.session.access_token) {
-            console.log("Accès token manquant, connectez-vous avec Discord");
-            res.redirect("login");
-            return;
+            return res.status(401).json({ error: "Accès token manquant, connectez-vous avec Discord" });
         }
 
         const userResponse = await axios.get('https://discord.com/api/users/@me', {
             headers: {
-                Authorization: `Bearer ${req.session.access_token}`,  
+                Authorization: `Bearer ${req.session.access_token}`,
             },
         });
 
         const userInfo = userResponse.data;
-
         res.json(userInfo);
     } catch (error) {
         res.status(error.response?.status || 500).json({
@@ -93,28 +87,27 @@ router.get('/userInformations', async (req, res, next) => {
 });
 
 router.get('/userGuilds', async (req, res, next) => {
-    if (!req.session.access_token) {
-        console.log("Accès token manquant, connectez-vous avec Discord");
-        res.redirect("login");
-        return;
-    }
-
     try {
+        if (!req.session.access_token) {
+            return res.status(401).json({ error: "Accès token manquant, connectez-vous avec Discord" });
+        }
+
         const userResponse = await axios.get('https://discord.com/api/users/@me/guilds', {
             headers: {
-                Authorization: `Bearer ${req.session.access_token}`,  
+                Authorization: `Bearer ${req.session.access_token}`,
             },
         });
 
         const userGuilds = userResponse.data;
-
         res.json(userGuilds);
     } catch (error) {
         console.error('Erreur lors de la récupération des serveurs de l\'utilisateur :', error.response ? error.response.data : error.message);
-        res.send('Erreur lors de la récupération des serveurs de l\'utilisateur.');
+        res.status(500).json({
+            error: "Erreur lors de la récupération des serveurs de l'utilisateur.",
+            message: error.message,
+        });
     }
 });
-
 
 
 
