@@ -1,33 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import UserDiscordInformation from "./UserDiscordInformations";
-import axios from 'axios';
 import "./UserDiscordPage.css"
-
-const API_URL = "http://localhost:3000";
+import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"
 
 const UserDiscordPage = () => {
-  const [user, setUser] = useState(null);
-  const [userGuilds, setUserGuilds] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(API_URL + "/discord/userInformations");
-        setUser(response.data);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des données de l'utilisateur :", error);
-      }
-      try {
-        const response2 = await axios.get(API_URL + "/discord/userGuilds");
-        setUserGuilds(response2.data);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des données de l'utilisateur :", error);
-      }
-    };
+  const {userGuilds, user} = useContext(DiscordUserContext);
 
-    fetchData();
-  }, []); 
-  
   return (
     <div className="discord-page" >
       <h1 className="title">Bienvenue sur la page Discord</h1>

@@ -1,6 +1,10 @@
 import { Col } from 'react-bootstrap';
+import React, { useContext } from "react";
+import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"
 
-const UserInformations = ({user}) => {
+const UserInformations = () => {
+
+  const {user} = useContext(DiscordUserContext);
     return (
         <Col>
             <h2 className="mb-4 title">Informations de l'utilisateur</h2>

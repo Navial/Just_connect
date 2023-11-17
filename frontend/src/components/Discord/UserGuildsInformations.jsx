@@ -1,7 +1,13 @@
 import { ListGroup, Row, Col, Tab } from 'react-bootstrap';
+import React, { useContext } from "react";
 import DiscordStatistics from './DiscordStatistics';
+import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"
 
-const GuildsInformations = ({guilds})  => {
+const GuildsInformations = ()  => {
+
+  const {userGuilds} = useContext(DiscordUserContext);
+
+  const guilds = userGuilds;
 
     return (
     <Tab.Container id="list-group" defaultActiveKey="#link0">

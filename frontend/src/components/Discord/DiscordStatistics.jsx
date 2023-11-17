@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as d3 from "d3";
+import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"
 
-const DiscordStatistics = ({ guilds }) => {
+const DiscordStatistics = ( ) => {
+const {userGuilds} = useContext(DiscordUserContext);
+
+const guilds = userGuilds;
   console.log(guilds);
   var data = [];
   guilds.forEach((guild) => {

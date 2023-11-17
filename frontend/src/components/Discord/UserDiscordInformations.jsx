@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from "react";
 import "./UserDiscordPage.css"
-import { Container} from 'react-bootstrap';
+import { Container, Row} from 'react-bootstrap';
 import UserInformations from './UserBasicInformations';
 import GuildsInformations from './UserGuildsInformations';
+import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"
 
-const UserDiscordInformation = ({ user, guilds }) => {
+const UserDiscordInformation = () => {
+
+  const {userGuilds, user} = useContext(DiscordUserContext);
+
+  const guilds = userGuilds;
 
   if(!(user && guilds)) {
     return (
