@@ -73,12 +73,14 @@ const Login = () => {
             Ou <Link to="/register"> s'inscrire maintenant ! </Link>
           </Form.Item>
         </Form>
-        <div>
 
-        <button className="btn-twitch">
-        <FaTwitch /> Connect with Twitch
-      </button>        
-    </div>
+        <div>
+          <form action="http://localhost:3000/users/auth/twitch" method="GET">
+            <button className="btn-twitch">
+              <FaTwitch /> Connect with Twitch
+            </button>        
+          </form>
+        </div>
 
   </Card>
     </div>
