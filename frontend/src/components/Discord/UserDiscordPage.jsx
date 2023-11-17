@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import UserDiscordInformation from "./UserDiscordInformations";
 import "./UserDiscordPage.css"
 import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"
+import { Col } from 'react-bootstrap';
 
 const UserDiscordPage = () => {
 
@@ -21,6 +22,9 @@ const UserDiscordPage = () => {
           <p>Chargement des informations...</p>
         )}
       </div>
+      <Col> 
+          <h2 className="title"> Questions ? </h2>
+      </Col>
     </div>
   );
 };
