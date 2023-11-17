@@ -14,7 +14,7 @@ var access_token;
 
 
 router.get('/login', async function(req, res, next) {
-    const redirect_url = `https://discord.com/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify%20guilds%20guilds.read&redirect_uri=${REDIRECT_URI}&prompt=consent`
+    const redirect_url = `https://discord.com/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify%20guilds&redirect_uri=${REDIRECT_URI}&prompt=consent`
     res.redirect(redirect_url);
   });
 
