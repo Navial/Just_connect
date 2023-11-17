@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import UserDiscordInformation from "./UserDiscordInformations";
 import axios from 'axios';
+import { Container, ListGroup, Row, Col, Tab } from 'react-bootstrap';
+import "./UserDiscordPage.css"
 
 const API_URL = "http://localhost:3000";
 
@@ -26,14 +28,17 @@ const UserDiscordPage = () => {
 
     fetchData();
   }, []); 
-
   
   return (
-    <div>
-      <h1>Bienvenue sur la page discord</h1>
+    <div className="discord-page" >
+      <h1 className="title">Bienvenue sur la page Discord</h1>
+      <p className="text-white"> 
+        Cette page vous montre quelques informations sur votre compte Discord 
+        lorsque vous vous connectez avec Discord, elle regroupe des informations propre à l'utilisateur, mais aussi des informations liées aux serveurs auxquels vous appartenez.
+      </p>
       <div>
         {userGuilds && user ? (
-          <UserDiscordInformation user={user} guilds = {userGuilds}/>
+          <UserDiscordInformation user={user} guilds={userGuilds} />
         ) : (
           <p>Chargement des informations...</p>
         )}

@@ -5,6 +5,7 @@ import Register from "../Register/Register";
 import NavBar from "../Navbar/Navbar";
 import Home from "../Home/Home";
 import UserDiscordPage from "../Discord/UserDiscordPage";
+import 'bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
   return (
     <>
