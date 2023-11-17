@@ -53,8 +53,6 @@ router.get('/callback', async (req, res, next) => {
 
         req.session.access_token = response.data.access_token;
         req.session.logged = true;
-
-        console.log("premier", req.session);
         res.redirect('http://localhost:5173/userDiscord');
         
     } catch (error) {
