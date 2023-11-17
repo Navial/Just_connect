@@ -1,7 +1,6 @@
 import React from 'react';
 import "./UserDiscordPage.css"
-import { Container, ListGroup, Row, Col, Tab } from 'react-bootstrap';
-import DiscordStatistics from './DiscordStatistics';
+import { Container} from 'react-bootstrap';
 import UserInformations from './UserBasicInformations';
 import GuildsInformations from './UserGuildsInformations';
 
