@@ -9,7 +9,6 @@ const GuildsInformations = ()  => {
 
   const guilds = userGuilds;
 
-  console.log(guilds);
     return (
     <Tab.Container id="list-group" defaultActiveKey="#link0">
         <h2 className="mb-4 title">Liste des serveurs </h2>
