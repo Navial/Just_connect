@@ -1,12 +1,19 @@
 import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link  } from "react-router-dom";
 
 const Login = () => {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
+
+
+
+  const handleDiscordLogin = () => {
+    window.location.href = 'http://localhost:3000/discord/login';
+
+  }
   return (
     <div
       style={{
@@ -68,7 +75,25 @@ const Login = () => {
             >
               Log in
             </Button>
+            
             Ou <Link to="/register"> s'inscrire maintenant ! </Link>
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="default"
+              style={{
+                backgroundColor: "#7289da",
+                color: "#ffffff",
+                border: "none",
+                borderRadius: "4px",
+                fontSize: "16px",
+                cursor: "pointer",
+                textAlign: "center"
+              }}
+              onClick={handleDiscordLogin}
+            >
+              Connect with Discord
+            </Button>
           </Form.Item>
         </Form>
       </Card>
