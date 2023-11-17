@@ -4,6 +4,9 @@ const userSchema = new mongoose.Schema({
   idRiot: String,
   idGithub: String,
   idGoogle: String,
+  idDiscord : String,
+  idMicrosoft : String,
+  idTwitch :String,
   profilePicture: String,
   email: String,
 });
