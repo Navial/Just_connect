@@ -17,7 +17,7 @@ const UserDiscordPage = () => {
     if (!connectionWay || connectionWay !== "discord") {
       navigate("/");
     }
-  }, [navigate]);
+  }, []);
 
   return (
     <div className="discord-page" >

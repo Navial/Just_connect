@@ -7,7 +7,6 @@ import axios from 'axios';
 const NavBar = () => {
   const { disconnect, logged } = useContext(UserContext);
 
-  console.log(logged)
 
   const handleLogout = async () => {
     try {
