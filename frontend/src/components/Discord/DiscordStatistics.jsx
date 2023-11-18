@@ -80,7 +80,7 @@ const DiscordStatistics = () => {
       .attr("dy", "1em")
       .style("text-anchor", "middle")
       .text("Nombre de fonctionnalités");
-  }, [guilds]); // Mettez à jour le graphique lorsque guilds change
+  }, [guilds]); 
 
   return <div ref={chartRef}></div>;
 };

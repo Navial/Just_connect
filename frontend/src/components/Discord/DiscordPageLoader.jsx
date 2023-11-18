@@ -4,8 +4,7 @@ import { ProviderWrapper as DiscordProviderWrapper } from '../../contexts/Discor
 const DiscordPageLoader = () => {
     return (
         <DiscordProviderWrapper> 
-
-        <UserDiscordPage />
+            <UserDiscordPage />
         </DiscordProviderWrapper>
     )
 

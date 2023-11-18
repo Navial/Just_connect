@@ -6,9 +6,7 @@ const AppLoader = () => (
 
   <ProviderWrapper>
     <Router>
-      
         <App />
-      
     </Router>
   </ProviderWrapper>
 );

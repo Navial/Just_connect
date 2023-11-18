@@ -66,7 +66,6 @@ router.get('/userInformations', async (req, res, next) => {
     console.log(req.session)
     try {
         if (!req.session.access_token) {
-            console.log("ici userinfo");
             return res.status(401).json({ error: "Accès token manquant, connectez-vous avec Discord" });
         }
 
