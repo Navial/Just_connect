@@ -17,7 +17,7 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:3000/discord/login');
 
-      connect();
+      connect("discord");
       window.location.href = response.data.redirectUrl;
     } catch (error) {
       console.error('Erreur lors de la connexion :', error);

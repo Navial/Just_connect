@@ -9,11 +9,15 @@ const UserDiscordPage = () => {
 
   const {userGuilds, user} = useContext(DiscordUserContext);
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (user === undefined) {
-  //     navigate("/");
-  //   }
-  // }, [user, navigate]);
+
+
+  useEffect(() => {
+    const connectionWay = localStorage.getItem("connectionWay");
+
+    if (!connectionWay || connectionWay !== "discord") {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <div className="discord-page" >

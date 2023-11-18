@@ -21,7 +21,8 @@ const ProviderWrapper = (props) => {
         setLogged(false);
       };
 
-    const connect = () => {
+    const connect = (way) => {
+        localStorage.setItem('connectionWay', way)
         setLogged(true);
       };
     

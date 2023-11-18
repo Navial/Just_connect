@@ -12,6 +12,8 @@ const NavBar = () => {
   const handleLogout = async () => {
     try {
       await axios.post('http://localhost:3000/auth/logout', null, { withCredentials: true });
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('connectionWay');
 
       disconnect();
       window.location.href = 'http://localhost:5173/';
