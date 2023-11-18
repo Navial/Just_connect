@@ -21,7 +21,6 @@ const NavBar = () => {
     }
   };
 
-  console.log(logged);
   return (
     <Menu mode="horizontal" theme="light">
       <Menu.Item key="home">
