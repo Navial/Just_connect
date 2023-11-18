@@ -6,19 +6,13 @@ var logger = require('morgan');
 var session = require('express-session');  
 require('dotenv').config();
 
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var discordRouter = require('./routes/discord');
+var authRouter = require('./routes/auth');
 const cors = require('cors');
 
-
-
-
-
 var app = express();
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,6 +44,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/discord', discordRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
