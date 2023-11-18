@@ -11,16 +11,10 @@ const DISCORD_API_URL = 'https://discord.com/api';
 
 
 
-router.get('/login', async (req, res) => {
-
+router.post('/login', async (req, res) => {
     const redirect_url = `${DISCORD_API_URL}/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify%20guilds&redirect_uri=${REDIRECT_URI}&prompt=consent`;
-    res.redirect(redirect_url);
-});
-
-router.get('/logout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
-});
+    res.status(200).json({ redirectUrl: redirect_url });
+  });
 
 router.get('/callback', async (req, res, next) => {
     try {
@@ -46,6 +40,7 @@ router.get('/callback', async (req, res, next) => {
             }
         );
 
+
         if (response.data.error) {
             console.error("Erreur lors de l'échange du code contre un jeton d'accès:", response.data.error_description);
             return res.status(response.status || 500).json({ error: response.data.error_description });
@@ -53,7 +48,7 @@ router.get('/callback', async (req, res, next) => {
 
         req.session.access_token = response.data.access_token;
         req.session.logged = true;
-        res.redirect('http://localhost:5173/userDiscord');
+        res.redirect('http://localhost:5173/userDiscord')
         
     } catch (error) {
         console.error("Erreur lors du traitement du callback:", error.message);
@@ -62,9 +57,16 @@ router.get('/callback', async (req, res, next) => {
 });
 
 
+router.get('/check', (req, res) => {
+    res.json({ loggedIn: req.session.logged || false });
+});
+
+
 router.get('/userInformations', async (req, res, next) => {
+    console.log(req.session)
     try {
         if (!req.session.access_token) {
+            console.log("ici userinfo");
             return res.status(401).json({ error: "Accès token manquant, connectez-vous avec Discord" });
         }
 
