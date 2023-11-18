@@ -30,12 +30,19 @@ const ProviderWrapper = (props) => {
     
         fetchData();
       }, []); 
+
+
+      const resetState = () => {
+        setUser(null);
+        setUserGuilds([]);
+      };
     
     const exposedValue = {
         user,
         setUser,
         userGuilds,
-        setUserGuilds
+        setUserGuilds,
+        resetState
     }
     
     return <Context.Provider value={exposedValue}>

@@ -1,13 +1,18 @@
-import React from "react";
+import {React, useContext} from "react";
+import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"
 import { Menu, Button } from "antd";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
+
 const NavBar = () => {
+
+  const {resetState} = useContext(DiscordUserContext);
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:3000/users/logout');
-      // Rediriger ou mettre à jour l'état de votre application
+      await axios.post('http://localhost:3000/users/logout', null, {withCredentials: true});
+      
+      resetState();
       window.location.href = 'http://localhost:5173/';
     } catch (error) {
       console.error('Erreur lors de la déconnexion :', error);
