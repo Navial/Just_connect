@@ -1,14 +1,16 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "components/App/App";
-import { ProviderWrapper as DiscordProviderWrapper } from '../../contexts/DiscordUserContext'
+import { ProviderWrapper  } from '../../contexts/UserContext'
 
 const AppLoader = () => (
-  <Router>
-    <DiscordProviderWrapper>
-    <App />
-    </DiscordProviderWrapper>
-    
-  </Router>
+
+  <ProviderWrapper>
+    <Router>
+      
+        <App />
+      
+    </Router>
+  </ProviderWrapper>
 );
 
 export default AppLoader;

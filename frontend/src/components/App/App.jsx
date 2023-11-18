@@ -3,8 +3,8 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NavBar from "../Navbar/Navbar";
 import Home from "../Home/Home";
-import UserDiscordPage from "../Discord/UserDiscordPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DiscordPageLoader from "../Discord/DiscordPageLoader";
 const App = () => {
   return (
     <>
@@ -13,7 +13,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/userDiscord" element={<UserDiscordPage />} />
+        <Route path="/userDiscord" element={<DiscordPageLoader />} />
       </Routes>
     </>
   );

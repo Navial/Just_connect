@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import UserDiscordInformation from "./UserDiscordInformations";
 import "./UserDiscordPage.css"
 import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"
@@ -7,6 +8,12 @@ import { Container, Row} from 'react-bootstrap';
 const UserDiscordPage = () => {
 
   const {userGuilds, user} = useContext(DiscordUserContext);
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (user === undefined) {
+  //     navigate("/");
+  //   }
+  // }, [user, navigate]);
 
   return (
     <div className="discord-page" >
@@ -15,11 +22,7 @@ const UserDiscordPage = () => {
         Cette page vous montre quelques informations sur votre compte Discord 
         lorsque vous vous connectez avec Discord, elle regroupe des informations propre à l'utilisateur, mais aussi des informations liées aux serveurs auxquels vous appartenez.
       </p>
-        {userGuilds && user ? (
-          <UserDiscordInformation user={user} guilds={userGuilds} />
-        ) : (
-          <p>Chargement des informations...</p>
-        )}
+        <UserDiscordInformation user={user} guilds={userGuilds} />
         <Container>
           <Row>
           <h2 className="title"> Questions ? </h2>

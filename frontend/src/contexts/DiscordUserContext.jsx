@@ -9,7 +9,7 @@ const API_URL = "http://localhost:3000";
     
 const ProviderWrapper = (props) => {
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(undefined);
     const [userGuilds, setUserGuilds] = useState([]);
 
     useEffect(() => {
