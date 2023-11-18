@@ -2,6 +2,7 @@ import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
 import { Link  } from "react-router-dom";
+import axios from 'axios'
 
 const Login = () => {
   const onFinish = (values) => {
@@ -10,9 +11,15 @@ const Login = () => {
 
 
 
-  const handleDiscordLogin = () => {
-    window.location.href = 'http://localhost:3000/discord/login';
-
+  const handleDiscordLogin = async () => {
+    try {
+      console.log("ici")
+      const response = await axios.post('http://localhost:3000/discord/login');
+      console.log(response.data.redirectUrl);
+      window.location.href = response.data.redirectUrl;
+    } catch (error) {
+      console.error('Erreur lors de la connexion :', error);
+    }
   }
   return (
     <div
