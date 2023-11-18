@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NavBar from "../Navbar/Navbar";
@@ -14,6 +14,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/userDiscord" element={<DiscordPageLoader />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
