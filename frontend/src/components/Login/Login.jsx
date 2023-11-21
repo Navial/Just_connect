@@ -1,10 +1,16 @@
-import {React, useContext} from "react";
+import React, { useContext } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
+import { MsalProvider } from "@azure/msal-react";
+import msalConfig from "../../msalConfig";
+import AzureButton from "../Azure/AzureButton";
 
-import { Context as UserContext  } from "../../contexts/UserContext"; 
-import { Link  } from "react-router-dom";
-import axios from 'axios'
+import { Context as UserContext } from "../../contexts/UserContext";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { PublicClientApplication } from "@azure/msal-browser";
+
+const pca_Azure = new PublicClientApplication(msalConfig);
 
 const Login = () => {
   const { logged, connect } = useContext(UserContext);
@@ -15,14 +21,14 @@ const Login = () => {
 
   const handleDiscordLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/discord/login');
+      const response = await axios.post("http://localhost:3000/discord/login");
 
       connect("discord");
       window.location.href = response.data.redirectUrl;
     } catch (error) {
-      console.error('Erreur lors de la connexion :', error);
+      console.error("Erreur lors de la connexion :", error);
     }
-  }
+  };
   return (
     <div
       style={{
@@ -32,7 +38,7 @@ const Login = () => {
         height: "100vh",
       }}
     >
-      <Card title="Connexion" >
+      <Card title="Connexion">
         <Form
           name="normal_login"
           className="login-form"
@@ -84,7 +90,6 @@ const Login = () => {
             >
               Log in
             </Button>
-            
             Ou <Link to="/register"> s'inscrire maintenant ! </Link>
           </Form.Item>
           <Form.Item>
@@ -97,12 +102,17 @@ const Login = () => {
                 borderRadius: "4px",
                 fontSize: "16px",
                 cursor: "pointer",
-                textAlign: "center"
+                textAlign: "center",
               }}
               onClick={handleDiscordLogin}
             >
               Connect with Discord
             </Button>
+          </Form.Item>
+          <Form.Item>
+            <MsalProvider instance={pca_Azure}>
+              <AzureButton />
+            </MsalProvider>
           </Form.Item>
         </Form>
       </Card>
