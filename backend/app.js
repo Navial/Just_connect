@@ -22,7 +22,6 @@ const SESSION_SECRET=process.env.CALLBACK_URL;
 const CALLBACK_URL='http://localhost:3000/users/auth/twitch/callback';
 
 
-
 const app = express();
 
 // view engine setup

@@ -7,9 +7,11 @@ router.get('/auth/twitch', passport.authenticate('twitch', { scope: 'user_read' 
 
 router.get('/auth/twitch/callback',passport.authenticate('twitch', { failureRedirect: 'http://localhost:5173/' }),
     (req, res) => {
+        
         console.log('Authentification réussie !');
+        console.log(req.user);
         // L'utilisateur est authentifié avec succès
-        res.redirect('http://localhost:5173/'); // Redirigez vers la page du forum ou toute autre page souhaitée
+        res.redirect({user: req.user},'http://localhost:5173/'); // Redirigez vers la page du forum ou toute autre page souhaitée
     }
 );
 

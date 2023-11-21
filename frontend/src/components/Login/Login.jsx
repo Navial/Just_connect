@@ -2,7 +2,7 @@ import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
 import { Link } from "react-router-dom";
-import { FaTwitch } from 'react-icons/fa'; // Importez l'icône Twitch de Font Awesome
+import TwitchButton from "./TwitchButton";
 
 const Login = () => {
   const onFinish = (values) => {
@@ -74,15 +74,9 @@ const Login = () => {
           </Form.Item>
         </Form>
 
-        <div>
-          <form action="http://localhost:3000/users/auth/twitch" method="GET">
-            <button className="btn-twitch">
-              <FaTwitch /> Connect with Twitch
-            </button>        
-          </form>
-        </div>
+        <TwitchButton />
 
-  </Card>
+      </Card>
     </div>
   );
 };
