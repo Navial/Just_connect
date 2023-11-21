@@ -33,8 +33,5 @@ router.get('/', (req, res) => {
 router.get('/forum', ensureAuthenticated, (req, res) => {
     res.send('Bienvenue sur le forum');
 });
-=======
-
-const router = express.Router();
 
 module.exports = router;

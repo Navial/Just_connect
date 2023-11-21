@@ -1,30 +1,22 @@
 const express = require('express');
 const session = require('express-session');
-
-var createError = require("http-errors");
-var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const { MONGODB_URI } = require("./utils/config");
-require('dotenv').config();
+var createError = require("http-errors");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var discordRouter = require('./routes/discord');
-var authRouter = require('./routes/auth');
+var path = require("path");
 const cors = require('cors');
-
-const cookieParser = require('cookie-parser');
-var request        = require('request');
-
+var request = require('request');
 const passport = require('passport');
 var OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 
+const { MONGODB_URI } = require("./utils/config");
 require('dotenv').config();
 
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const discordRouter = require('./routes/discord');
+const authRouter = require('./routes/auth');
 
 const TWITCH_CLIENT_ID= process.env.TWITCH_CLIENT_ID;
 const TWITCH_SECRET= process.env.TWITCH_SECRET;
@@ -66,14 +58,6 @@ app.use(session({
 
     maxAge: 3600000, 
 },
-}));
-
-
-// Configuration de session
-app.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true
 }));
 
 // Initialisation de passport
@@ -164,7 +148,7 @@ app.use((err, req, res, next) => {
 
 app.use(function (req, res, next) {
   next(createError(404));
-});
+})});
 
 // error handler
 app.use(function (err, req, res, next) {
