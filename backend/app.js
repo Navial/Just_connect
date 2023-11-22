@@ -17,11 +17,13 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const discordRouter = require('./routes/discord');
 const authRouter = require('./routes/auth');
+const twitchRouter = require('./routes/twitch');
+
 
 const TWITCH_CLIENT_ID= process.env.TWITCH_CLIENT_ID;
 const TWITCH_SECRET= process.env.TWITCH_SECRET;
 const SESSION_SECRET=process.env.CALLBACK_URL;
-const CALLBACK_URL='http://localhost:3000/users/auth/twitch/callback';
+const CALLBACK_URL='http://localhost:3000/twitch/auth/callback';
 
 
 const app = express();
@@ -129,9 +131,9 @@ passport.deserializeUser((obj, done) => {
 });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/discord', discordRouter);
 app.use('/auth', authRouter);
+app.use('/twitch',twitchRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
