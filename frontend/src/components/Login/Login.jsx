@@ -1,29 +1,18 @@
-import {React, useContext} from "react";
+import {React} from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
 import TwitchButton from "./TwitchButton";
-import { Context as UserContext  } from "../../contexts/UserContext"; 
 import { Link  } from "react-router-dom";
-import axios from 'axios'
+import DiscordButton from "./DiscordButton";
 
 
 const Login = () => {
-  const { logged, connect } = useContext(UserContext);
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
 
-  const handleDiscordLogin = async () => {
-    try {
-      const response = await axios.post('http://localhost:3000/discord/login');
 
-      connect("discord");
-      window.location.href = response.data.redirectUrl;
-    } catch (error) {
-      console.error('Erreur lors de la connexion :', error);
-    }
-  }
   return (
     
     <div
@@ -90,21 +79,7 @@ const Login = () => {
             Ou <Link to="/register"> s'inscrire maintenant ! </Link>
           </Form.Item>
           <Form.Item>
-            <Button
-              type="default"
-              style={{
-                backgroundColor: "#7289da",
-                color: "#ffffff",
-                border: "none",
-                borderRadius: "4px",
-                fontSize: "16px",
-                cursor: "pointer",
-                textAlign: "center"
-              }}
-              onClick={handleDiscordLogin}
-            >
-              Connect with Discord
-            </Button>
+           <DiscordButton></DiscordButton>
           </Form.Item>
         </Form>
 
