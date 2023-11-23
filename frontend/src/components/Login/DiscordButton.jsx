@@ -6,7 +6,7 @@ import { Context as UserContext  } from "../../contexts/UserContext";
 
 const DiscordButton = () =>  {
 
-    const { logged, connect } = useContext(UserContext);
+    const { connect } = useContext(UserContext);
 
     const handleDiscordLogin = async () => {
         try {
