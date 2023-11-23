@@ -1,23 +1,24 @@
 import { React, useContext } from "react";
-import { Context as UserContext  } from "../../contexts/UserContext"; 
+import { Context as UserContext } from "../../contexts/UserContext";
 import { Menu, Button } from "antd";
-import { Link } from "react-router-dom";
-import axios from 'axios';
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const NavBar = () => {
-  const { disconnect, logged } = useContext(UserContext);
+  const { disconnect, logged, getConnectionWay } = useContext(UserContext);
 
+  const typeConnection = getConnectionWay();
 
+  const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:3000/auth/logout', null, { withCredentials: true });
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('connectionWay');
-
+      await axios.post("http://localhost:3000/auth/logout", null, {
+        withCredentials: true,
+      });
       disconnect();
-      window.location.href = 'http://localhost:5173/';
+      navigate("/");
     } catch (error) {
-      console.error('Erreur lors de la déconnexion :', error);
+      console.error("Erreur lors de la déconnexion :", error);
     }
   };
 
@@ -36,13 +37,33 @@ const NavBar = () => {
             <Link to="/register">Inscription</Link>
           </Menu.Item>
         </>
-      ) : null}
+      ) : (
+        ""
+      )}
+
+      {typeConnection === "discord" ? (
+        <Menu.Item key="discord">
+          <Link to="/userDiscord">Page Discord</Link>
+        </Menu.Item>
+      ) : (
+        ""
+      )}
+
+      {typeConnection === "google" ? (
+        <Menu.Item key="google">
+          <Link to="/userGoogle">Page Google</Link>
+        </Menu.Item>
+      ) : (
+        ""
+      )}
 
       {logged ? (
-        <Menu.Item key="logout" style={{ float: 'right' }}>
+        <Menu.Item key="logout" style={{ float: "right" }}>
           <Button onClick={handleLogout}>Déconnexion</Button>
         </Menu.Item>
-      ) : null}
+      ) : (
+        ""
+      )}
     </Menu>
   );
 };

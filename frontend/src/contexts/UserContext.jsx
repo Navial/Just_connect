@@ -13,6 +13,8 @@ const ProviderWrapper = (props) => {
 
   const disconnect = () => {
     setLogged(false);
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('connectionWay');
   };
 
   const connect = (way) => {
