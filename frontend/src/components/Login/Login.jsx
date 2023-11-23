@@ -1,6 +1,7 @@
 import {React} from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
+import GoogleButton from "../Google/GoogleButton";
 import TwitchButton from "./TwitchButton";
 import { Link  } from "react-router-dom";
 import DiscordButton from "./DiscordButton";
@@ -12,9 +13,7 @@ const Login = () => {
     console.log("Received values of form: ", values);
   };
 
-
   return (
-    
     <div
       style={{
         display: "flex",
@@ -23,7 +22,7 @@ const Login = () => {
         height: "100vh",
       }}
     >
-      <Card title="Connexion" >
+      <Card title="Connexion">
         <Form
           name="normal_login"
           className="login-form"
@@ -75,8 +74,11 @@ const Login = () => {
             >
               Log in
             </Button>
-            
             Ou <Link to="/register"> s'inscrire maintenant ! </Link>
+          </Form.Item>
+
+          <Form.Item>
+            <GoogleButton />
           </Form.Item>
           <Form.Item>
            <DiscordButton></DiscordButton>
@@ -84,7 +86,6 @@ const Login = () => {
         </Form>
 
         <TwitchButton />
-
       </Card>
     </div>
   );

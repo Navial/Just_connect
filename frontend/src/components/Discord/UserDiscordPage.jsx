@@ -16,16 +16,7 @@ import { Container, Row} from 'react-bootstrap';
 const UserDiscordPage = () => {
 
   const {userGuilds, user} = useContext(DiscordUserContext);
-  const navigate = useNavigate();
-
-  //Lorsque l'utilisateur n'est pas connecté avec discord, il est redirigé vers la page d'accueil
-  useEffect(() => {
-    const connectionWay = localStorage.getItem("connectionWay");
-
-    if (!connectionWay || connectionWay !== "discord") {
-      navigate("/");
-    }
-  }, []);
+  
 
   return (
     <div className="discord-page" >

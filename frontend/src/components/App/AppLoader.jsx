@@ -1,14 +1,19 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "components/App/App";
-import { ProviderWrapper  } from '../../contexts/UserContext'
+import { ProviderWrapper as UserProviderWrapper } from '../../contexts/UserContext'
 
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import config from "../../services/config";
+
+const googleClientId = config.googleClientId;
 const AppLoader = () => (
-
-  <ProviderWrapper>
+  <UserProviderWrapper>
     <Router>
+    <GoogleOAuthProvider clientId={googleClientId}>
         <App />
+        </GoogleOAuthProvider>
     </Router>
-  </ProviderWrapper>
+  </UserProviderWrapper>
 );
 
 export default AppLoader;
