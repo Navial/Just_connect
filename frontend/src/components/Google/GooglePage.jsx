@@ -1,7 +1,32 @@
 import { getAuthenticatedUser } from "../../services/auths";
+import UserSevice  from "../../services/userService";
+import { useEffect, useState } from "react";
 import "./googlePage.css";
 const GooglePage = () => {
-  const userInfo = getAuthenticatedUser();
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      UserSevice.getUserWithGoogle()
+        .then((user) => {
+          setUserInfo(user);
+        })
+        .catch((error) => {
+          console.error(
+            "Erreur lors de la récupération de l'utilisateur:",
+            error
+          );
+        });
+    };
+
+    fetchUserInfo();
+  }, []);
+
+  if (!userInfo) {
+    // L'utilisateur n'a pas encore été récupéré
+    return <div>Loading...</div>;
+  }
+
   console.log({ userInfo });
   return (
     <div className="user-info-container">

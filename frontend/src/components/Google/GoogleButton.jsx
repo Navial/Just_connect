@@ -7,11 +7,11 @@ import UserService from "../../services/userService";
 import { setAuthenticatedUser } from "../../services/auths";
 
 import { Context as UserContext } from "../../contexts/UserContext";
-import { useContext  } from "react";
+import { useContext } from "react";
+import axios from 'axios'
+import { Button } from "antd";
 
-import { useNavigate  } from "react-router-dom";
-
-const GoogleButton = () => {
+/* const GoogleButton = () => {
   const navigate = useNavigate();
   const { logged, connect } = useContext(UserContext);
 
@@ -30,6 +30,33 @@ const GoogleButton = () => {
         console.log("Login Failed !");
       }}
     />
+  );
+};
+ */
+
+const GoogleButton = () => {
+  const { connect } = useContext(UserContext);
+
+  const handleGoogleLogin = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/oauthGoogle/login"
+      );
+
+      connect("google");
+      window.location.href = response.data.redirectUrl;
+    } catch (error) {
+      console.error("Erreur lors de la connexion :", error);
+    }
+  };
+
+  return (
+    <Button
+      type="default"
+      onClick={handleGoogleLogin}
+    >
+      Connect with google
+    </Button>
   );
 };
 
