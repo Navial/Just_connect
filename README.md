@@ -72,7 +72,7 @@ Chaque authentification réussie débloque une fonctionnalité spéciale. Ces fo
 
 -**Google**: [Fonctionnalité spéciale de Google]
 
--**Discord**: [Voir l'ensemble de ses serveurs, et avoir une statistique de fonctionnalités sur nos serveurs]
+-**Discord**:[Voir l'ensemble de ses serveurs, et avoir une statistique de fonctionnalités sur nos serveurs
 
 -**Twitch**: [Fonctionnalité spéciale de Twitch]
 
