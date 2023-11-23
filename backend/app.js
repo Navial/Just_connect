@@ -12,7 +12,6 @@ const { MONGODB_URI } = require("./utils/config");
 require('dotenv').config();
 
 const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
 const discordRouter = require('./routes/discord');
 const authRouter = require('./routes/auth');
 const twitchRouter = require('./routes/twitch');
