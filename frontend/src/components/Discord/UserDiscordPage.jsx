@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import UserDiscordInformation from "./UserDiscordInformations";
 import "./UserDiscordPage.css"
 import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"
@@ -8,16 +7,7 @@ import { Container, Row} from 'react-bootstrap';
 const UserDiscordPage = () => {
 
   const {userGuilds, user} = useContext(DiscordUserContext);
-  const navigate = useNavigate();
-
-
-  useEffect(() => {
-    const connectionWay = localStorage.getItem("connectionWay");
-
-    if (!connectionWay || connectionWay !== "discord") {
-      navigate("/");
-    }
-  }, []);
+  
 
   return (
     <div className="discord-page" >

@@ -6,8 +6,14 @@ import Home from "../Home/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DiscordPageLoader from "../Discord/DiscordPageLoader";
 import GooglePage from "../Google/GooglePage";
+import { useContext } from "react";
+import { Context as UserContext } from "../../contexts/UserContext";
 
 const App = () => {
+  const { getConnectionWay } = useContext(UserContext);
+
+  const typeConnection = getConnectionWay();
+
   return (
     <>
       <NavBar />
@@ -15,8 +21,18 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/userDiscord" element={<DiscordPageLoader />} />
-        <Route path="/userGoogle" element={<GooglePage />} />
+        {typeConnection === "discord" ? (
+          <Route path="/userDiscord" element={<DiscordPageLoader />} />
+        ) : (
+          ""
+        )}
+
+        {typeConnection === "google" ? (
+          <Route path="/userGoogle" element={<GooglePage />} />
+        ) : (
+          ""
+        )}
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
