@@ -9,7 +9,7 @@ Assurez-vous d'avoir Node.js et npm installés sur votre machine.
 
 ## Frontend (React)
 
-Le frontend est écrit en React et est configuré pour fonctionner sur le port 5173 par défaut. Pour lancer le frontend, exécutez la commande suivante depuis le répertoire du frontend :
+Le frontend est écrit en ReactJS et est configuré pour fonctionner sur le port 5173 par défaut. Pour lancer le frontend, exécutez la commande suivante depuis le répertoire du frontend :
 
 
 ```bash
@@ -21,6 +21,7 @@ Le frontend sera accessible à l'adresse http://localhost:5173.
 
 ## Backend (Node.js avec Express)
 
+Le backend est écrit en Node.js et utilise express  et est configuré pour fonctionner sur le port 3000 par défaut. Pour lancer le backend, exécutez la commande suivante depuis le répertoire du backend :
 ```bash
 npm install
 npm start
