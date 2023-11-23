@@ -1,3 +1,8 @@
+/*
+Ce contexte nous permet simplement de récupérer l'information si l'utilisateur est connecté et avec quel moyen
+
+*/
+
 import React, { useState, useEffect } from "react";
 
 const Context = React.createContext(null);

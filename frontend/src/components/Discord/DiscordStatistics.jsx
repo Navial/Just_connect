@@ -1,3 +1,10 @@
+/* 
+Author : Agbassah Steven
+Date : octobre / novembre 2023
+
+Composant correspondant à un graphique des nombres de fonctionnalités en fonctions des différents serveurs de l'utilisateur fait en utilisant la librairie D3.js
+*/
+
 import React, { useRef, useContext, useEffect } from "react";
 import * as d3 from "d3";
 import { Context as DiscordUserContext } from "../../contexts/DiscordUserContext";

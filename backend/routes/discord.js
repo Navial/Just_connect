@@ -1,3 +1,12 @@
+
+/*Author : Agbassah Steven
+  Date : octobre / novembre 2023
+
+  Cette page représente un router réalisé en express et permet de gérer toute l'authentification via Discord, mais également la récupération 
+  de certaines informations une fois que l'authentification a été réalisée
+
+  Attention, pour le bon fonctionnement de ce router, assurez vous d'avoir créé un fichier .env à la racine du projet : référé vous au README du projet
+*/
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -10,12 +19,23 @@ const REDIRECT_URI = process.env.DISCORD_REDIRECT_URI;
 const DISCORD_API_URL = 'https://discord.com/api';
 
 
+/* 
+Route correspondant à /discord/login permettant d'obtenir un code pour avoir un jeton d'authentification discord
 
+
+*/
 router.post('/login', async (req, res) => {
-    const redirect_url = `${DISCORD_API_URL}/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify%20guilds&redirect_uri=${REDIRECT_URI}&prompt=consent`;
+    const redirect_url = `${DISCORD_API_URL}/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}&scope=identify%20guilds&redirect_uri=${REDIRECT_URI}&prompt=consent`; //le scope permet de délimiter les ressources de l'api discord auxquelles on aura accès avec le token
     res.status(200).json({ redirectUrl: redirect_url });
   });
 
+
+
+/* 
+Route correspondant à /discord/callback, c'est la route surlaquelle on est redirigé après s'être authentifié avec discord grâce à /discord/login
+elle permet de nous donner  un token en échange d'un code d'authentification obtenu dans /discord/login
+
+*/
 router.get('/callback', async (req, res, next) => {
     try {
         const code = req.query["code"];
@@ -57,11 +77,10 @@ router.get('/callback', async (req, res, next) => {
 });
 
 
-router.get('/check', (req, res) => {
-    res.json({ loggedIn: req.session.logged || false });
-});
+/* 
+Route permettant d'obtenir des informations de base sur l'utilisateur discord, après vérification de la présence d'un token d'authentification discord
 
-
+*/
 router.get('/userInformations', async (req, res, next) => {
     console.log(req.session)
     try {
@@ -71,7 +90,7 @@ router.get('/userInformations', async (req, res, next) => {
 
         const userResponse = await axios.get('https://discord.com/api/users/@me', {
             headers: {
-                Authorization: `Bearer ${req.session.access_token}`,
+                Authorization: `Bearer ${req.session.access_token}`,   //sans cette ligne, on ne serait pas autorisé à récupérer les informations de l'API
             },
         });
 
@@ -84,6 +103,13 @@ router.get('/userInformations', async (req, res, next) => {
         });
     }
 });
+
+
+/* 
+Route permettant d'obtenir des informations de base sur les serveurs de 
+l'utilisateur discord, après vérification de la présence d'un token d'authentification discord
+
+*/
 
 router.get('/userGuilds', async (req, res, next) => {
     try {

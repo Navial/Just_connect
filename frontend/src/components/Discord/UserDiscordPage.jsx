@@ -1,4 +1,13 @@
-import React, { useContext } from "react";
+/* 
+Author : Agbassah Steven
+Date : octobre / novembre 2023
+
+Composant représentant la page d'un utilisateur connecté avec discord
+*/
+
+
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import UserDiscordInformation from "./UserDiscordInformations";
 import "./UserDiscordPage.css"
 import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"
