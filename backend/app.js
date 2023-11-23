@@ -5,9 +5,8 @@ var logger = require("morgan");
 var createError = require("http-errors");
 
 var path = require("path");
-const cors = require("cors");
-var request = require("request");
-const passport = require("passport");
+const cors = require('cors');
+const passport = require('passport');
 
 const { MONGODB_URI } = require("./utils/config");
 
@@ -40,7 +39,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
   credentials: true,
 };
 
