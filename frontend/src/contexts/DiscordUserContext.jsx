@@ -1,3 +1,12 @@
+/* 
+Author : Agbassah Steven
+Date : octobre / novembre 2023
+
+Contexte discord permettant d'avoir les informations discord sur l'utilisateur (s'il est connecté avec discord), et pouvoir fournir ces informations
+à différents composants React
+*/
+
+
 import React, { useState, useEffect } from "react";
 
 import axios from 'axios';
@@ -32,6 +41,7 @@ const ProviderWrapper = (props) => {
       }, []); 
 
 
+      // Fonction pour supprimer les informations de l'utilisateur lorsqu'il se déconnecte
       const resetState = () => {
         setUser(null);
         setUserGuilds([]);

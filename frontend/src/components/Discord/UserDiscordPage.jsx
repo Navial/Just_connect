@@ -1,3 +1,11 @@
+/* 
+Author : Agbassah Steven
+Date : octobre / novembre 2023
+
+Composant représentant la page d'un utilisateur connecté avec discord
+*/
+
+
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserDiscordInformation from "./UserDiscordInformations";
@@ -10,7 +18,7 @@ const UserDiscordPage = () => {
   const {userGuilds, user} = useContext(DiscordUserContext);
   const navigate = useNavigate();
 
-
+  //Lorsque l'utilisateur n'est pas connecté avec discord, il est redirigé vers la page d'accueil
   useEffect(() => {
     const connectionWay = localStorage.getItem("connectionWay");
 

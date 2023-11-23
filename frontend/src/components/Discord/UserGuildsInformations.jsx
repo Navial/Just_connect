@@ -1,3 +1,11 @@
+/* 
+Author : Agbassah Steven
+Date : octobre / novembre 2023
+
+Composant représentant les informations sur les serveurs discords d'un utilisateur connecté avec discord
+*/
+
+
 import { ListGroup, Row, Col, Tab } from 'react-bootstrap';
 import React, { useContext } from "react";
 import DiscordStatistics from './DiscordStatistics';

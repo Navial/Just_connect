@@ -1,3 +1,10 @@
+/* 
+Author : Agbassah Steven
+Date : octobre / novembre 2023
+
+Composant relevant les informations de base d'un utilisateur
+*/
+
 import { Col } from 'react-bootstrap';
 import React, { useContext } from "react";
 import {Context as DiscordUserContext} from "../../contexts/DiscordUserContext"

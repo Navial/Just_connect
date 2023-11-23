@@ -1,3 +1,12 @@
+/* 
+Author : Agbassah Steven
+Date : octobre / novembre 2023
+
+Composant reprenant les diverses informations d'un utilisateur discord
+*/
+
+
+
 import React, { useContext } from "react";
 import "./UserDiscordPage.css"
 import { Container, Row} from 'react-bootstrap';
@@ -21,8 +30,8 @@ const UserDiscordInformation = () => {
   return (
       <Container className="mt-4 text-discord">
         <Row>
-          <UserInformations user = {user}> </UserInformations>
-          <GuildsInformations guilds={ guilds}></GuildsInformations>
+          <UserInformations > </UserInformations>
+          <GuildsInformations ></GuildsInformations>
         </Row>
       </Container>
     );

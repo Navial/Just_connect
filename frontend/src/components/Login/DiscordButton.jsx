@@ -1,4 +1,9 @@
+/* 
+Author : Agbassah Steven
+Date : octobre / novembre 2023
 
+Bouton reliant le frontend au backend et permettant l'authentification avec discord
+*/
 import { Button } from "antd";
 import axios from 'axios'
 import {useContext} from "react";
