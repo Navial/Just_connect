@@ -90,7 +90,7 @@ router.get('/userInformations', async (req, res, next) => {
 
         const userResponse = await axios.get('https://discord.com/api/users/@me', {
             headers: {
-                Authorization: `Bearer ${req.session.access_token}`,
+                Authorization: `Bearer ${req.session.access_token}`,   //sans cette ligne, on ne serait pas autorisé à récupérer les informations de l'API
             },
         });
 
