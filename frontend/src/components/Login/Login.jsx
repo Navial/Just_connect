@@ -2,10 +2,9 @@ import { React, useContext } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
 import { Link } from "react-router-dom";
-import GoogleButton from "./GoogleButton";
+import GoogleButton from "../Google/GoogleButton";
 import TwitchButton from "./TwitchButton";
 import { Context as UserContext } from "../../contexts/UserContext";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {

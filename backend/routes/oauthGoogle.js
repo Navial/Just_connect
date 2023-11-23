@@ -13,6 +13,7 @@ router.post("/", async (req, res, next) => {
     let user = await User.findOne({ idGoogle: tokeninfo.sub });
 
     console.log({ user });
+    console.log({ tokeninfo });
     //Si il exisits pas on le cree
     if (!user) {
       user = new User({
@@ -25,7 +26,13 @@ router.post("/", async (req, res, next) => {
       await user.save();
     }
 
-    res.json(user);
+    res.json({
+      email: tokeninfo.email,
+      name: tokeninfo.name,
+      picture: tokeninfo.picture,
+      email_verified: tokeninfo.email_verified,
+      sub: tokeninfo.sub,
+    });
   } catch (error) {
     console.error("Erreur lors de la vérification de l'Access Token:", error);
     res.status(401).json({ error: "Invalid Access Token" });
