@@ -1,16 +1,27 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
+const express = require('express');
+const session = require('express-session');
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var createError = require("http-errors");
+
+var path = require("path");
+const cors = require('cors');
+var request = require('request');
+const passport = require('passport');
+
 const { MONGODB_URI } = require("./utils/config");
 const cors = require("cors");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const oauthGoogleRouter = require("./routes/oauthGoogle");
+require('dotenv').config();
 
-var app = express();
+const discordRouter = require('./routes/discord');
+const authRouter = require('./routes/auth');
+const twitchRouter = require('./routes/twitch');
+
+const app = express();
 
 const mongoose = require("mongoose");
 
@@ -29,16 +40,64 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true,
+};
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/oauthGoogle", oauthGoogleRouter);
+app.use(cors(corsOptions));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+
+    maxAge: 3600000, 
+},
+}));
+
+// Initialisation de passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
+// Méthodes pour sérialiser et désérialiser l'utilisateur dans la session
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+
+passport.deserializeUser((obj, done) => {
+    done(null, obj);
+});
+
+app.use('/', indexRouter);
+app.use('/discord', discordRouter);
+app.use('/auth', authRouter);
+app.use('/twitch',twitchRouter);
 
 // catch 404 and forward to error handler
+app.use((req, res, next) => {
+    res.status(404).send('Not Found');
+});
+
+// error handler
+app.use((err, req, res, next) => {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    res.status(err.status || 500);
+    res.send('Error');
+
 app.use(function (req, res, next) {
   next(createError(404));
-});
+})});
 
 // error handler
 app.use(function (err, req, res, next) {

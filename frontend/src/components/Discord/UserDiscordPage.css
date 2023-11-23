@@ -1,0 +1,60 @@
+
+.discord-page {
+    background: #36393f;
+    color: white;
+    padding: 20px;
+}
+
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.bg-discord {
+    background-color: #2f3136;
+}
+
+
+.title {
+    color: #7289da !important;
+    text-decoration: underline;
+    text-decoration-color:#7289da;
+}
+
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.tab-content {
+    background-color: #2f3136;
+    color: white;
+    padding: 15px;
+    border-radius: 0 4px 4px 4px;
+}
+
+.tab-pane p {
+    color: white;
+}
+
+.tab-pane img {
+    max-width: 100%;
+}
+
+.user-info-list .list-group-item {
+    background-color: #36393f ;
+    color: white;
+}
+
+.user-info-list .list-group-item:hover {
+    background-color: #2a71f9;
+}
+.server-list .list-group-item {
+    background-color: #2f3136;
+    color: white;
+}
+
+.server-list .list-group-item:hover {
+    background-color: #2a71f9;
+    color:white
+}
