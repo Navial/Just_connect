@@ -51,6 +51,9 @@ SESSION_SECRET=SEEEECRET
 MONGODB_URI=mongodb+srv://projetweb3oauth:mQ0JxtEozTxpUJPN@cluster0.rbb9rop.mongodb.net/projetweb3?retryWrites=true&w=majority
 
 ```
+## Base de données et confidentialité
+Suite à l'authentification avec un moyen externe à la plateforme, il est d'usage d'enregistrer des informations sur l'utilisateur dans une base de données. Pour ce projet, nous avons décidé de ne pas le faire et nous vous **garantissons**
+donc qu'**aucune** de vos données personelles ne seront enregistrées de notre côté.
 
 ## Authentification
 Chaque méthode d'authentification est accessible via l'interface utilisateur du frontend. Suivez les instructions spécifiques à chaque plateforme pour vous authentifier.
