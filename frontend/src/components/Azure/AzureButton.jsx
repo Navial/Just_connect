@@ -1,13 +1,19 @@
 import React from 'react';
 import { useMsal } from '@azure/msal-react';
 
+
 const AzureButton = () => {
-  const { instance } = useMsal();
+  const { instance, accounts  } = useMsal();
 
   const handleAzureLogin = async () => {
     try {
-      const loginResponse = await instance.loginPopup();
-      console.log(loginResponse);
+      const loginResponse = await instance.acquireTokenPopup({
+        account: accounts[0],
+        scopes: ["User.Read"]
+    });
+
+    
+
     } catch (error) {
       console.error(error);
     }

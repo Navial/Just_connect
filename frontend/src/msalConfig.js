@@ -1,16 +1,12 @@
 const msalConfig = {
     auth: {
       clientId: "b4381e65-ebc5-4cf1-8eea-dad6ebf4c15c",
-      //authority: 'https://login.microsoftonline.com/mvnash.onmicrosoft.com',
-      //redirectUri: 'http://localhost:3000',
+      redirectUri: 'http://localhost:5173',
     },
-    /* cache: {
+     cache: {
       cacheLocation: 'localStorage',
       storeAuthStateInCookie: true,
     },
-    scopes: [
-        'user.read'
-    ], */
   };
   
   export default msalConfig;
