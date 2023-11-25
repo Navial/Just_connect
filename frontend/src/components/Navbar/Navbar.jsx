@@ -57,6 +57,14 @@ const NavBar = () => {
         ""
       )}
 
+      {typeConnection === "twitch" ? (
+        <Menu.Item key="twitch">
+          <Link to="/twitch">Page Twitch</Link>
+        </Menu.Item>
+      ) : (
+        ""
+      )}
+
       {logged ? (
         <Menu.Item key="logout" style={{ float: "right" }}>
           <Button onClick={handleLogout}>Déconnexion</Button>

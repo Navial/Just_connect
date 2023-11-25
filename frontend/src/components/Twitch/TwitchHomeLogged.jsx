@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomeLogged = ({user}) => {
+const TwitchHomeLogged = ({user}) => {
   const userData = JSON.parse(user).data[0];
   console.log(userData);
   return (
@@ -18,4 +18,4 @@ const HomeLogged = ({user}) => {
   );
 };
 
-export default HomeLogged;
+export default TwitchHomeLogged;

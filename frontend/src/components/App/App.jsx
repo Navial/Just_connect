@@ -8,6 +8,7 @@ import DiscordPageLoader from "../Discord/DiscordPageLoader";
 import GooglePage from "../Google/GooglePage";
 import { useContext } from "react";
 import { Context as UserContext } from "../../contexts/UserContext";
+import TwitchHome from "../Twitch/TwitchHome";
 
 const App = () => {
   const { getConnectionWay } = useContext(UserContext);
@@ -34,6 +35,7 @@ const App = () => {
         )}
 
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/twitch" element={<TwitchHome />} />
       </Routes>
     </>
   );

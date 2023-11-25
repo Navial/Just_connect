@@ -1,8 +1,7 @@
 import React from "react";
-import HomeLogged from "./HomeLogged";
 import { useLocation } from 'react-router-dom';
 
-const HomeNotLogged = () => {
+const Home = () => {
   return (
     <div
       style={{
@@ -12,24 +11,10 @@ const HomeNotLogged = () => {
         height: "100vh",
       }}
     >
-    <h1>Vous n'êtes pas connecté !</h1>
+    <h1>Bienvenue sur Just Connect</h1>
       
     </div>
   );
-};
-
-const Home = () => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-
-  // Get a specific parameter
-  var user = queryParams.get('user');
-
-  if (user) {
-    return <HomeLogged user={atob(user)} />;
-  } else {
-    return <HomeNotLogged />;
-  }
 
 };
 

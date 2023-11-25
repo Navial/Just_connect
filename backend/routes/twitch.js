@@ -22,7 +22,7 @@ router.get('/auth/callback',passport.authenticate('twitch', { failureRedirect: '
         var encoded = btoa(JSON.stringify(req.user))
 
         // L'utilisateur est authentifié avec succès
-        res.redirect('http://localhost:5173/?user='+encoded); // Redirigez vers la page du forum ou toute autre page souhaitée
+        res.redirect('http://localhost:5173/twitch/?user='+encoded); // Redirigez vers la page du forum ou toute autre page souhaitée
 
     }
 );
