@@ -1,9 +1,6 @@
-import { useState, useEffect } from "react";
-import userService from "../../services/userService";
 import GoogleEventItem from "./GoogleEventItem";
-
-const GoogleCalendar = ({events}) => {
-  
+import { Empty, Space } from "antd";
+const GoogleCalendar = ({ events }) => {
   // Fonction pour diviser le tableau en sous-tableaux de taille donnée (ici, 3)
   const chunkArray = (arr, size) => {
     return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
@@ -12,23 +9,28 @@ const GoogleCalendar = ({events}) => {
   };
 
   // Diviser les événements en sous-listes de 3
-  const eventsChunks = chunkArray(events, 3);
+  const eventsChunks = chunkArray(events, 2);
 
-  console.log({events});
+  console.log({ events });
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", marginTop: "10px" }}>
       <h2>Liste des Événements</h2>
       {events.length === 0 ? (
-      <p>Aucun événement</p>
-    ) : (
-      eventsChunks.map((eventsRow, index) => (
-        <div key={index} style={{ display: "flex", marginBottom: 16 }}>
-          {eventsRow.map((event) => (
-            <GoogleEventItem key={event.id} event={event} />
-          ))}
-        </div>
-      ))
-    )}
+        <Empty
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description={<p>Aucun événement</p>}
+        />
+      ) : (
+        eventsChunks.map((eventsRow, index) => (
+          <div key={index}>
+            <Space key={index} style={{ marginBottom: 16 }}>
+              {eventsRow.map((event) => (
+                <GoogleEventItem key={event.id} event={event} />
+              ))}
+            </Space>
+          </div>
+        ))
+      )}
     </div>
   );
 };

@@ -1,12 +1,14 @@
-import UserSevice from "../../services/userService";
+import UserService from "../../services/userService";
 import { useEffect, useState } from "react";
-import './GoogleUserInformation.css'
+import { Card, Avatar } from "antd";
+import { UserOutlined } from '@ant-design/icons';
+const { Meta } = Card;
 const GoogleUserInformation = () => {
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      UserSevice.getUserWithGoogle()
+      UserService.getUserWithGoogle()
         .then((user) => {
           setUserInfo(user);
         })
@@ -26,28 +28,34 @@ const GoogleUserInformation = () => {
   }
 
   return (
-    <>
-      <div className="user-info-container">
-        <h1>Information de l'utilisateur</h1>
-        <div className="user-info">
-          <div className="user-info-item">
-            <strong>Email:</strong> {userInfo.email}
-          </div>
-          <div className="user-info-item">
-            <strong>Nom:</strong> {userInfo.name}
-          </div>
-          <div className="user-info-item">
-            <strong>Photo de profil:</strong>{" "}
-            <img src={userInfo.picture} alt="User Profile" />
-          </div>
-          <div className="user-info-item">
-            <strong>Id :</strong> {userInfo.id}
-          </div>
-        </div>
-      </div>
-
-     
-    </>
+    <div style={{marginTop: '10px'}} >
+      <h1 style={{textAlign: 'center'}}>Information de l'utilisateur</h1>
+      <Card
+        style={{
+          width: 500,
+          borderRadius: 10,
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        }}
+        
+      >
+        <Meta
+          avatar={
+            <Avatar src={userInfo.picture} icon={<UserOutlined />} size={64} />
+          }
+          title={userInfo.name}
+          description={
+            <>
+              <p>
+                <strong>Email:</strong> {userInfo.email}
+              </p>
+              <p>
+                <strong>Id :</strong> {userInfo.id}
+              </p>
+            </>
+          }
+        />
+      </Card>
+    </div>
   );
 };
 

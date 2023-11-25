@@ -17,7 +17,6 @@ const GooglePage = () => {
     }
   };
 
-  
   useEffect(() => {
     fetchEvents();
   }, []);
@@ -27,12 +26,12 @@ const GooglePage = () => {
   };
 
   return (
-    <>
+    <div style={{ margin: "20px 80px" }}>
       <GoogleUserInformation />
 
-      <GoogleCalendar events={events}/>
-      <AddGoogleEventForm onEventAdded={handleEventAdded}/>
-    </>
+      <GoogleCalendar events={events} />
+      <AddGoogleEventForm onEventAdded={handleEventAdded} />
+    </div>
   );
 };
 
