@@ -1,35 +1,30 @@
-import { GoogleLogin } from "@react-oauth/google";
-
-import { jwtDecode } from "jwt-decode";
-
-import UserService from "../../services/userService";
-
-import { setAuthenticatedUser } from "../../services/auths";
-
 import { Context as UserContext } from "../../contexts/UserContext";
-import { useContext  } from "react";
+import { useContext } from "react";
+import { Button } from "antd";
 
-import { useNavigate  } from "react-router-dom";
+import { GoogleOutlined } from "@ant-design/icons";
+
+import userService from "../../services/userService";
 
 const GoogleButton = () => {
-  const navigate = useNavigate();
-  const { logged, connect } = useContext(UserContext);
+  const { connect } = useContext(UserContext);
+
+  const handleGoogleLogin = async () => {
+    try {
+      const response = await userService.loginGoogle();
+
+      connect("google");
+      window.location.href = response.redirectUrl;
+    } catch (error) {
+      console.error("Erreur lors de la connexion :", error);
+    }
+  };
 
   return (
-    <GoogleLogin
-      onSuccess={(credentialResponse) => {
-        UserService.getUserWithGoogle(credentialResponse.credential).then(
-          (user) => {
-            setAuthenticatedUser(user);
-            connect("google");
-            navigate("/userGoogle")
-          }
-        );
-      }}
-      onError={() => {
-        console.log("Login Failed !");
-      }}
-    />
+    <Button type="default" onClick={handleGoogleLogin} style={{ display: 'inline-block', marginRight: '10px' }}>
+      <GoogleOutlined />
+      Connect with google
+    </Button>
   );
 };
 
