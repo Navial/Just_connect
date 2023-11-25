@@ -20,8 +20,16 @@ const loginGoogle = () => {
   return request.then((response) => response.data);
 };
 
+const addEventGoogle= (newEvent) => {
+  const request = axios.post(`${baseUrl}/oauthGoogle/addEvent`,newEvent, {
+    withCredentials: true
+  });
+  return request.then((response) => response.data);
+}
+
 export default {
   getUserWithGoogle,
   getGoogleCalendar,
   loginGoogle,
+  addEventGoogle
 };
