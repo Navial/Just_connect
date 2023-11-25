@@ -29,16 +29,16 @@ const GooglePage = () => {
   return (
     <>
       <div className="user-info-container">
-        <h1>User Information</h1>
+        <h1>Information de l'utilisateur</h1>
         <div className="user-info">
           <div className="user-info-item">
             <strong>Email:</strong> {userInfo.email}
           </div>
           <div className="user-info-item">
-            <strong>Name:</strong> {userInfo.name}
+            <strong>Nom:</strong> {userInfo.name}
           </div>
           <div className="user-info-item">
-            <strong>Picture:</strong>{" "}
+            <strong>Photo de profil:</strong>{" "}
             <img src={userInfo.picture} alt="User Profile" />
           </div>
           <div className="user-info-item">
