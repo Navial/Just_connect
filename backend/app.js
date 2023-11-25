@@ -5,21 +5,33 @@ var logger = require("morgan");
 var createError = require("http-errors");
 
 var path = require("path");
-const cors = require('cors');
 const passport = require('passport');
+var cors = require('cors');
+var bodyParser = require('body-parser');
+
+
+var githubRouter = require('./routes/github_route');
 
 const { MONGODB_URI } = require("./utils/config");
 
 var indexRouter = require("./routes/index");
 const oauthGoogleRouter = require("./routes/oauthGoogle");
 require("dotenv").config();
+// app.use(cors());
+
 
 const discordRouter = require("./routes/discord");
 const authRouter = require("./routes/auth");
-const twitchRouter = require("./routes/twitch");
+const twitchRouter = require("./routes/twitch"); 
 
 const app = express();
 
+app.use(bodyParser.json());
+
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", false);
@@ -75,8 +87,8 @@ app.use("/", indexRouter);
 app.use("/discord", discordRouter);
 app.use("/auth", authRouter);
 app.use("/twitch", twitchRouter);
-
 app.use("/oauthGoogle", oauthGoogleRouter);
+app.use('/github', githubRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

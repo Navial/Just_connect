@@ -1,14 +1,14 @@
-import {React} from "react";
+import { React } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
-import GoogleButton from "../Google/GoogleButton";
+import { Link } from "react-router-dom";
+
+import GithubBtn from "../Login/GithubButton";
 import TwitchButton from "./TwitchButton";
-import { Link  } from "react-router-dom";
+import GoogleButton from "../Google/GoogleButton";
 import DiscordButton from "./DiscordButton";
 
-
 const Login = () => {
-
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
@@ -54,38 +54,22 @@ const Login = () => {
               },
             ]}
           >
-            <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Mot de passe"
-            />
+            Log in
           </Form.Item>
-          <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Se souvenir de moi</Checkbox>
-            </Form.Item>
-          </Form.Item>
-
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form-button"
-            >
-              Log in
-            </Button>
-            Ou <Link to="/register"> s'inscrire maintenant ! </Link>
-          </Form.Item>
-
+          Ou <Link to="/register"> s'inscrire maintenant ! </Link>
           <Form.Item>
             <GoogleButton />
           </Form.Item>
           <Form.Item>
-           <DiscordButton></DiscordButton>
+            <DiscordButton></DiscordButton>
+          </Form.Item>
+          <Form.Item>
+            <TwitchButton />
+          </Form.Item>
+          <Form.Item>
+            <GithubBtn />
           </Form.Item>
         </Form>
-
-        <TwitchButton />
       </Card>
     </div>
   );

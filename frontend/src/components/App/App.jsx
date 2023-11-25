@@ -1,13 +1,17 @@
 import { Route, Routes, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { Context as UserContext } from "../../contexts/UserContext";
+
 import Login from "../Login/Login";
 import NavBar from "../Navbar/Navbar";
 import Home from "../Home/Home";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import DiscordPageLoader from "../Discord/DiscordPageLoader";
-import GooglePage from "../Google/GooglePage";
-import { useContext } from "react";
-import { Context as UserContext } from "../../contexts/UserContext";
+
 import TwitchHome from "../Twitch/TwitchHome";
+import GithubPage from "../Github/GithubPage";
+import GooglePage from "../Google/GooglePage";
+import DiscordPageLoader from "../Discord/DiscordPageLoader";
 
 const App = () => {
   const { getConnectionWay } = useContext(UserContext);
@@ -37,6 +41,7 @@ const App = () => {
         )}
 
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/github" element={<GithubPage />} />
       </Routes>
     </>
   );

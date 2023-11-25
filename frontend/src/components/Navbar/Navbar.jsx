@@ -4,6 +4,8 @@ import { Menu, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import LogoutButton from '../Github/LogoutButton';
+
 const NavBar = () => {
   const { disconnect, logged, getConnectionWay } = useContext(UserContext);
 
@@ -72,7 +74,11 @@ const NavBar = () => {
       ) : (
         ""
       )}
+      <Menu.Item key="logout">
+        <LogoutButton></LogoutButton>
+      </Menu.Item>
     </Menu>
+    
   );
 };
 
