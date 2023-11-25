@@ -25,7 +25,6 @@ const App = () => {
         {typeConnection ?  "" : <Route path="/login" element={<Login />} />}
         
         <Route path="/twitch" element={<TwitchHome />} />
-        <Route path="/register" element={<Register />} />
         {typeConnection === "discord" ? (
           <Route path="/userDiscord" element={<DiscordPageLoader />} />
         ) : (
