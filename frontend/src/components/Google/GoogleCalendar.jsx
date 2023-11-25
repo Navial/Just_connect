@@ -31,13 +31,17 @@ const GoogleCalendar = () => {
   return (
     <div style={{ textAlign: "center" }}>
       <h2>Liste des Événements</h2>
-      {eventsChunks.map((eventsRow, index) => (
-        <div key={index} style={{ display: "flex", marginBottom: 16  }}>
+      {events.length === 0 ? (
+      <p>Aucun événement</p>
+    ) : (
+      eventsChunks.map((eventsRow, index) => (
+        <div key={index} style={{ display: "flex", marginBottom: 16 }}>
           {eventsRow.map((event) => (
             <GoogleEventItem key={event.id} event={event} />
           ))}
         </div>
-      ))}
+      ))
+    )}
     </div>
   );
 };
