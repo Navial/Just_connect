@@ -15,12 +15,15 @@ const App = () => {
 
   const typeConnection = getConnectionWay();
 
+  console.log(typeConnection);
+
   return (
     <>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        {typeConnection ?  "" : <Route path="/login" element={<Login />} />}
+        
         <Route path="/twitch" element={<TwitchHome />} />
         <Route path="/register" element={<Register />} />
         {typeConnection === "discord" ? (
