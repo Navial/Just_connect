@@ -1,53 +1,37 @@
 import { getAuthenticatedUser } from "../../services/auths";
-import UserSevice from "../../services/userService";
+import userService from "../../services/userService";
 import { useEffect, useState } from "react";
-import "./googlePage.css";
+
 import GoogleCalendar from "./GoogleCalendar";
+import AddGoogleEventForm from "./AddGoogleEventForm";
+import GoogleUserInformation from "./GoogleUserInformation";
 const GooglePage = () => {
-  const [userInfo, setUserInfo] = useState(null);
+  const [events, setEvents] = useState([]);
 
+  const fetchEvents = async () => {
+    try {
+      const eventsFetched = await userService.getGoogleCalendar();
+      setEvents(eventsFetched);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des événements:", error);
+    }
+  };
+
+  
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      UserSevice.getUserWithGoogle()
-        .then((user) => {
-          setUserInfo(user);
-        })
-        .catch((error) => {
-          console.error(
-            "Erreur lors de la récupération de l'utilisateur:",
-            error
-          );
-        });
-    };
-
-    fetchUserInfo();
+    fetchEvents();
   }, []);
 
-  if (!userInfo) {
-    return <div>Loading...</div>;
-  }
+  const handleEventAdded = () => {
+    fetchEvents();
+  };
+
   return (
     <>
-      <div className="user-info-container">
-        <h1>Information de l'utilisateur</h1>
-        <div className="user-info">
-          <div className="user-info-item">
-            <strong>Email:</strong> {userInfo.email}
-          </div>
-          <div className="user-info-item">
-            <strong>Nom:</strong> {userInfo.name}
-          </div>
-          <div className="user-info-item">
-            <strong>Photo de profil:</strong>{" "}
-            <img src={userInfo.picture} alt="User Profile" />
-          </div>
-          <div className="user-info-item">
-            <strong>Id :</strong> {userInfo.id}
-          </div>
-        </div>
-      </div>
+      <GoogleUserInformation />
 
-      <GoogleCalendar />
+      <GoogleCalendar events={events}/>
+      <AddGoogleEventForm onEventAdded={handleEventAdded}/>
     </>
   );
 };

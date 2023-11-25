@@ -32,7 +32,6 @@ router.post("/login", async (req, res) => {
   res.status(200).json({ redirectUrl });
 });
 
-
 router.get("/callback", async (req, res, next) => {
   try {
     const code = req.query.code;
@@ -108,9 +107,6 @@ router.get("/userCalendar", async (req, res) => {
     );
 
     const events = eventsResponse.data.items;
-
-    // Retourner la liste complète
-    console.log({ events });
     res.json(events);
   } catch (error) {
     console.error(
@@ -119,6 +115,84 @@ router.get("/userCalendar", async (req, res) => {
     );
     res.status(error.response?.status || 500).json({
       error: "Erreur lors de la récupération des événements du calendrier.",
+      message: error.message,
+    });
+  }
+});
+
+router.get("/userInfo", async (req, res) => {
+  const userToken = req.session.access_token;
+
+  console.log({ userToken });
+
+  try {
+    const userInfoResponse = await axios.get(
+      "https://www.googleapis.com/oauth2/v1/userinfo",
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    );
+
+    const userInfo = userInfoResponse.data;
+    res.json(userInfo);
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des informations de l'utilisateur:",
+      error.message
+    );
+    res.status(error.response?.status || 500).json({
+      error:
+        "Erreur lors de la récupération des informations de l'utilisateur.",
+      message: error.message,
+    });
+  }
+});
+
+router.post("/addEvent", async (req, res) => {
+  const userToken = req.session.access_token;
+  console.log({ userToken });
+
+  try {
+    const eventToAdd = {
+      summary: 'Nom de l\'événement',
+      description: 'Description de l\'événement',
+      start: {
+        dateTime: '2023-12-01T10:00:00', // Remplacez cette date et heure par celles de début souhaitées
+        timeZone: 'Europe/Brussels', // Remplacez par le fuseau horaire souhaité
+      },
+      end: {
+        dateTime: '2023-12-01T12:00:00', // Remplacez cette date et heure par celles de fin souhaitées
+        timeZone: 'Europe/Brussels', // Remplacez par le fuseau horaire souhaité
+      },
+    };
+
+    const {body}  = req;
+
+    console.log({body});
+  
+     await axios.post(
+      `https://www.googleapis.com/calendar/v3/calendars/primary/events`,
+      body,
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        
+      }
+    );
+
+    res.json({message: 'Evenement bien cree'})
+  } catch (error) {
+    console.error(
+      "Erreur lors de l'ajout  de l'événements au calendrier:",
+      error.response?.data || error.message
+    );
+    res.status(error.response?.status || 500).json({
+      error: "Erreur lors de l'ajout  de l'événements au calendrier:",
       message: error.message,
     });
   }
