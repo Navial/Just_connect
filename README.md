@@ -73,7 +73,7 @@ Chaque authentification réussie débloque une fonctionnalité spéciale. Ces fo
 
 -**Azure**: [Fonctionnalité spéciale d'Azure]
 
--**Google**: Voir ses informations ainsi que les événements du calendrier avec un lien qui permet de voir l'événement sur Google Calendar.
+-**Google**: Voir ses informations ainsi que les événements du calendrier avec un lien qui permet de voir l'événement sur Google Calendar et ajouter des événements à son calendrier.
 
 -**Discord**: Voir l'ensemble de ses serveurs, et avoir une statistique de fonctionnalités sur nos serveurs
 
