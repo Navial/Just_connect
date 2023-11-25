@@ -3,7 +3,10 @@
     background: #36393f;
     color: white;
     padding: 20px;
+    min-height: 100vh;
 }
+
+
 
 
 .mt-4 {
