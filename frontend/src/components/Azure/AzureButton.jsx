@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from "react";
 import { useMsal } from '@azure/msal-react';
+import { Context as UserContext } from "../../contexts/UserContext";
 
 
 const AzureButton = () => {
   const { instance, accounts  } = useMsal();
+  const { logged, connect } = useContext(UserContext);
 
   const handleAzureLogin = async () => {
     try {
@@ -12,7 +14,7 @@ const AzureButton = () => {
         scopes: ["User.Read"]
     });
 
-    
+    connect("azure");
 
     } catch (error) {
       console.error(error);
