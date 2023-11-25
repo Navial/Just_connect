@@ -1,17 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "../Login/Login";
-import Register from "../Register/Register";
 import NavBar from "../Navbar/Navbar";
-import Home from "../Home/Home";
+import GithubPage from "../Github/GithubPage";
 
 const App = () => {
   return (
     <>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<GithubPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   );
