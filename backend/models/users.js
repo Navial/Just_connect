@@ -11,6 +11,15 @@ const userSchema = new mongoose.Schema({
   email: String,
 });
 
+const TwitchuserSchema = new mongoose.Schema({
+  id: String,
+  login: String,
+  display_name: String,
+  profile_image_url : String,
+  email : String,
+  created_at :String
+});
+
 userSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
@@ -21,3 +30,4 @@ userSchema.set("toJSON", {
 
 // Export model
 module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("TwitchUser", TwitchuserSchema);

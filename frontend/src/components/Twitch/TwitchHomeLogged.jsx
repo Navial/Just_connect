@@ -1,7 +1,7 @@
 import React from "react";
 
 const TwitchHomeLogged = ({user}) => {
-  const userData = JSON.parse(user).data[0];
+  const userData = user;
   console.log(userData);
   return (
       <div >

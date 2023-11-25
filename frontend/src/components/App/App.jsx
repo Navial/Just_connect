@@ -21,6 +21,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/twitch" element={<TwitchHome />} />
         <Route path="/register" element={<Register />} />
         {typeConnection === "discord" ? (
           <Route path="/userDiscord" element={<DiscordPageLoader />} />
@@ -35,7 +36,6 @@ const App = () => {
         )}
 
         <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/twitch" element={<TwitchHome />} />
       </Routes>
     </>
   );
