@@ -85,7 +85,7 @@ Chaque authentification réussie débloque une fonctionnalité spéciale. Ces fo
 
 -**Twitch**: [Fonctionnalité spéciale de Twitch]
 
--**GitHub**: [Fonctionnalité spéciale de GitHub]
+-**GitHub**: Voir nos différents repositories et des informations sur ces derniers.
 
 ## Auteurs
 Abid Brahim, Agbassah Steven, ...
