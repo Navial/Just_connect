@@ -20,6 +20,7 @@ const ProviderWrapper = (props) => {
     setLogged(false);
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('connectionWay');
+    localStorage.removeItem('accessToken');
   };
 
   const connect = (way) => {

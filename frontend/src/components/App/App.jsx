@@ -40,8 +40,14 @@ const App = () => {
           ""
         )}
 
+
+      {typeConnection === "github" ? (
+          <Route path="/github" element={<GithubPage />} />
+        ) : (
+          ""
+        )}
+
         <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/github" element={<GithubPage />} />
       </Routes>
     </>
   );
