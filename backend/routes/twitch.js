@@ -36,11 +36,7 @@ router.get('/auth/callback',passport.authenticate('twitch', { failureRedirect: '
       }
 
         console.log('Authentification réussie !');
-        console.log(req.user);
-        var encoded = btoa(JSON.stringify(req.user))
-        
-        res.cookie("test","test");
-        // L'utilisateur est authentifié avec succès
+                // L'utilisateur est authentifié avec succès
         res.redirect('http://localhost:5173/twitch/'); // Redirigez vers la page du forum ou toute autre page souhaitée
 
     }

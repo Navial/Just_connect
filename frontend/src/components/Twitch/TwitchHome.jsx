@@ -4,6 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import styled from 'styled-components';
 
+import { useContext } from "react";
+import { Context as UserContext } from "../../contexts/UserContext";
+
 const HomeNotLogged = () => {
   return (
     <div
@@ -39,15 +42,19 @@ const redirectToTwitch = (username) => {
 const TwitchHome = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { connect } = useContext(UserContext);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3000/twitch/userInformations', { withCredentials: true });
         console.log(response.data);
-
+      
         if (response.data) {
           setUserData(response.data);
+          connect("twitch");
+        
         }
       } catch (error) {
         console.error("Error fetching user information:", error);
