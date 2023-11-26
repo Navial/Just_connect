@@ -1,12 +1,15 @@
-import React from "react";
+import {React, useContext} from "react";
 import { useNavigate } from "react-router-dom";
+import { Context as UserContext  } from "../../contexts/UserContext"; 
 
 import githubLogo from '../../icons/logo_github.png'; 
+
 
 const CLIENT_ID = "11d6bfcb9bff3259dba4";
 
 function loginWithGithub(){
     window.location.assign("http://github.com/login/oauth/authorize?client_id=" + CLIENT_ID);
+    const { connect } = useContext(UserContext);
     navigate("/github");
 }
 
