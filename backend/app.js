@@ -8,21 +8,17 @@ var path = require("path");
 const passport = require('passport');
 var cors = require('cors');
 var bodyParser = require('body-parser');
-
-
-var githubRouter = require('./routes/github_route');
-
 const { MONGODB_URI } = require("./utils/config");
-
-var indexRouter = require("./routes/index");
 const oauthGoogleRouter = require("./routes/oauthGoogle");
 require("dotenv").config();
-// app.use(cors());
+
 
 
 const discordRouter = require("./routes/discord");
 const authRouter = require("./routes/auth");
 const twitchRouter = require("./routes/twitch"); 
+var githubRouter = require('./routes/github_route');
+var indexRouter = require("./routes/index");
 
 const app = express();
 
@@ -44,7 +40,6 @@ mongoose
     console.error("Error connecting to MongoDB:", err);
   });
 
-// app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
