@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 const HomeNotLogged = () => {
   return (
@@ -14,6 +16,10 @@ const HomeNotLogged = () => {
       <h1>Vous n'êtes pas connecté !</h1>
     </div>
   );
+};
+
+const redirectToTwitch = (username) => {
+  window.location.href = 'http://twitch.tv/'+username;
 };
 
 const TwitchHome = () => {
@@ -47,14 +53,22 @@ const TwitchHome = () => {
   if (userData) {
     return (
       <div>
-        <p>Name displayed : {userData.display_name}</p>
-        <p>Login : {userData.login} </p> 
-        <p>Id : {userData.id} </p>
-        <p>Date de création : {userData.created_at}</p>
-        <p>Email : {userData.email}</p>
-        <p>View count : {userData.view_count}</p>
-        <p>Photo : </p>
-        <img src={userData.profile_image_url} alt="Profile"></img>
+
+        <Card style={{ width: '30rem' ,
+                       marginLeft : '640px'}}>
+          <Card.Img variant="top" src={userData.profile_image_url} />
+          <Card.Body>
+            <Card.Title>{userData.display_name}</Card.Title>
+
+            <Card.Text>Login : {userData.login}</Card.Text>
+            <Card.Text>Id : {userData.id}</Card.Text>
+            <Card.Text>Date de création : {userData.created_at}</Card.Text>
+            <Card.Text>Email : {userData.email}</Card.Text>
+            <Card.Text>View count : {userData.view_count}</Card.Text>
+            <Button     style={{ backgroundColor: 'purple' }} onClick={()=>redirectToTwitch(userData.login)} variant="primary">Go to my Twitch Page</Button>
+          </Card.Body>
+          
+        </Card>
       </div>
     );
   } else {

@@ -1,6 +1,8 @@
 import {React, useContext} from "react";
 import { Context as UserContext } from "../../contexts/UserContext";
 import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 const Home = () => {
 
@@ -25,6 +27,7 @@ const Home = () => {
         Just Connect est un site où vous pouvez vous connecter avec différents moyens d'authentification externes tels que GitHub, Discord, Twitch et Azure. Explorez vos informations sur ces plateformes directement depuis notre site, 
         et découvrez parfois des fonctionnalités spéciales.
       </p>
+      
 
       {typeConnection ? 
       <p>

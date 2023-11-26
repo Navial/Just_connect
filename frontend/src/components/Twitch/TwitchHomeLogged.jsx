@@ -1,10 +1,17 @@
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 const TwitchHomeLogged = ({user}) => {
   const userData = user;
   console.log(userData);
   return (
+    
       <div >
+
+
+
+        <h1>Vous êtes connecté !</h1>
         <p>Name displayed : {userData.display_name}</p>
         <p>Login : {userData.login} </p> 
         <p>Id : {userData.id} </p>
