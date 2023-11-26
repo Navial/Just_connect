@@ -41,14 +41,20 @@ const corsOptions = {
 ```
 De plus pour que le backend fonctionne, il vous faudra mettre un fichier .env à la racine avec le contenu suivant :
 ``` 
-TWITCH_CLIENT_ID = 'v9e4a3teexxbsmeovv3bmq4tz02281'
-TWITCH_SECRET    = '35kapw7g0q7uv5crba6powesd9bpeo'
-
+GOOGLE_CLIENT_ID=82750345803-0j5f035ffj0b0gjtm9def2cuvgkres1i.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+GOOGLE_REDIRECT_URI=http://localhost:3000/oauthGoogle/callback
 DISCORD_CLIENT_ID=1174682089338183772
 DISCORD_CLIENT_SECRET=-q2j9dJchOJ2KcZAhKZpMAy0PAMY22qr
 DISCORD_REDIRECT_URI=http://localhost:3000/discord/callback
 SESSION_SECRET=SEEEECRET
-MONGODB_URI=mongodb+srv://projetweb3oauth:mQ0JxtEozTxpUJPN@cluster0.rbb9rop.mongodb.net/projetweb3?retryWrites=true&w=majority
+
+TWITCH_CLIENT_ID = v9e4a3teexxbsmeovv3bmq4tz02281
+TWITCH_SECRET    = 35kapw7g0q7uv5crba6powesd9bpeo
+SESSION_SECRET   = secret
+
+GITHUB_CLIENT_ID = 11d6bfcb9bff3259dba4
+GITHUB_CLIENT_SECRET = 7879cfa60edb6f2a4813d58c68870f031f3f2b76
 
 ```
 ## Base de données et confidentialité
