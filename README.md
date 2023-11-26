@@ -68,6 +68,12 @@ Chaque méthode d'authentification est accessible via l'interface utilisateur du
 
 -**Google**: Utilisez votre compte Google pour vous authentifier et explorez la fonctionnalité spéciale associée à Google.
 
+  **Pour vous authentifier avec google, veuillez utiliser le compte suivant car seuls les comptes approuvés sont autorisés :** 
+  ```
+mail : testgroupe15@gmail.com
+password : iplgroupe15
+  ```
+
 -**Discord**: Utilisez votre compte Discord pour vous authentifier et explorez la fonctionnalité spéciale associée à Discord.
 
 -**Twitch**: Utilisez votre compte Twitch pour vous authentifier et explorez la fonctionnalité spéciale associée à Twitch.
