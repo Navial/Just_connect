@@ -67,6 +67,14 @@ const NavBar = () => {
         ""
       )}
 
+      {typeConnection === "github" ? (
+        <Menu.Item key="github">
+          <Link to="/github">Page Github</Link>
+        </Menu.Item>
+      ) : (
+        ""
+      )}
+
       {logged ? (
         <Menu.Item key="logout" style={{ float: "right" }}>
           <Button onClick={handleLogout}>Déconnexion</Button>

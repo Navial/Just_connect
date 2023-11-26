@@ -8,8 +8,10 @@ import githubLogo from '../../icons/logo_github.png';
 const CLIENT_ID = "11d6bfcb9bff3259dba4";
 
 function loginWithGithub(){
-    window.location.assign("http://github.com/login/oauth/authorize?client_id=" + CLIENT_ID);
     const { connect } = useContext(UserContext);
+    window.location.assign("http://github.com/login/oauth/authorize?client_id=" + CLIENT_ID);
+    connect("github");
+    
     navigate("/github");
 }
 
