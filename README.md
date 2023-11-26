@@ -83,7 +83,7 @@ Chaque authentification réussie débloque une fonctionnalité spéciale. Ces fo
 
 -**Discord**: Voir l'ensemble de ses serveurs, et avoir une statistique de fonctionnalités sur nos serveurs
 
--**Twitch**: [Fonctionnalité spéciale de Twitch]
+-**Twitch**: Voir ses informations.
 
 -**GitHub**: Voir nos différents repositories et des informations sur ces derniers.
 
