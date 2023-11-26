@@ -8,11 +8,8 @@ var path = require("path");
 const passport = require('passport');
 var cors = require('cors');
 var bodyParser = require('body-parser');
-const { MONGODB_URI } = require("./utils/config");
 const oauthGoogleRouter = require("./routes/oauthGoogle");
 require("dotenv").config();
-
-
 
 const discordRouter = require("./routes/discord");
 const authRouter = require("./routes/auth");
@@ -28,17 +25,6 @@ app.use(bodyParser.json());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-const mongoose = require("mongoose");
-
-mongoose.set("strictQuery", false);
-mongoose
-  .connect(MONGODB_URI)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.error("Error connecting to MongoDB:", err);
-  });
 
 app.use(logger("dev"));
 app.use(express.json());

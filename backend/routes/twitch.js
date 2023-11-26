@@ -2,14 +2,11 @@ const express = require('express');
 const passport = require('passport');
 var OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 var request = require('request');
-const mongoose = require("mongoose");
-const TwitchUser = require("../models/users");
 
 const TWITCH_CLIENT_ID= process.env.TWITCH_CLIENT_ID;
 const TWITCH_SECRET= process.env.TWITCH_SECRET;
 const SESSION_SECRET=process.env.CALLBACK_URL;
 const CALLBACK_URL='http://localhost:3000/twitch/auth/callback';
-
 
 const router = express.Router();
 
@@ -17,24 +14,8 @@ const router = express.Router();
 router.get('/auth', passport.authenticate('twitch', { scope: 'user_read' }));
 
 router.get('/auth/callback',passport.authenticate('twitch', { failureRedirect: 'http://localhost:5173/'}),
-    async (req, res) => {
+    (req, res) => {
         
-      let user = await TwitchUser.findOne({ id: req.user.data[0].id });
-
-      if (!user) {
-        let user = new TwitchUser({
-          id: req.user.data[0].id,
-          email: req.user.data[0].email,
-          profilePicture: req.user.data[0].profile_image_url,
-          login: req.user.data[0].login,
-          display_name: req.user.data[0].display_name,
-          created_at: req.user.data[0].created_at
-          });
-  
-        // l'inserer dans la db
-        await user.save();
-      }
-
         console.log('Authentification réussie !');
                 // L'utilisateur est authentifié avec succès
         res.redirect('http://localhost:5173/twitch/'); // Redirigez vers la page du forum ou toute autre page souhaitée

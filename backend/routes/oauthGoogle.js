@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/users");
-const mongoose = require("mongoose");
 const {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
