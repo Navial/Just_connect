@@ -74,9 +74,9 @@ const NavBar = () => {
       ) : (
         ""
       )}
-      <Menu.Item key="logout">
+      {/* <Menu.Item key="logout">
         <LogoutButton></LogoutButton>
-      </Menu.Item>
+      </Menu.Item> */}
     </Menu>
     
   );
