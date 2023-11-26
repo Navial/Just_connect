@@ -24,7 +24,7 @@ const Home = () => {
     >
       <h1>Bienvenue sur Just Connect</h1>
       <p>
-        Just Connect est un site où vous pouvez vous connecter avec différents moyens d'authentification externes tels que GitHub, Discord, Twitch et Azure. Explorez vos informations sur ces plateformes directement depuis notre site, 
+        Just Connect est un site où vous pouvez vous connecter avec différents moyens d'authentification externes tels que GitHub, Discord, Google, Twitch et Azure. Explorez vos informations sur ces plateformes directement depuis notre site, 
         et découvrez parfois des fonctionnalités spéciales.
       </p>
       
