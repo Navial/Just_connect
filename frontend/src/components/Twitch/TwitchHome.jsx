@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import styled from 'styled-components';
 
 const HomeNotLogged = () => {
   return (
@@ -17,6 +18,19 @@ const HomeNotLogged = () => {
     </div>
   );
 };
+
+const PurpleText = styled.p`
+  color: "#6441A5";
+`;
+
+const whiteText = styled.p`
+  color: white;
+`;
+
+const purpleLightText = styled.p`
+  color: #B9A3E3;
+`;
+
 
 const redirectToTwitch = (username) => {
   window.location.href = 'http://twitch.tv/'+username;
@@ -53,19 +67,20 @@ const TwitchHome = () => {
   if (userData) {
     return (
       <div>
-
         <Card style={{ width: '30rem' ,
-                       marginLeft : '640px'}}>
+                       marginLeft : '640px',
+                       backgroundColor: "#262626",
+                       padding: "10px"}}>
           <Card.Img variant="top" src={userData.profile_image_url} />
           <Card.Body>
-            <Card.Title>{userData.display_name}</Card.Title>
+            <Card.Title style={{ color: '#6441A5'}}>{userData.display_name}</Card.Title>
 
-            <Card.Text>Login : {userData.login}</Card.Text>
-            <Card.Text>Id : {userData.id}</Card.Text>
-            <Card.Text>Date de création : {userData.created_at}</Card.Text>
-            <Card.Text>Email : {userData.email}</Card.Text>
-            <Card.Text>View count : {userData.view_count}</Card.Text>
-            <Button     style={{ backgroundColor: 'purple' }} onClick={()=>redirectToTwitch(userData.login)} variant="primary">Go to my Twitch Page</Button>
+            <Card.Text style={{ color: '#6441A5'}} >Login : {userData.login}</Card.Text>
+            <Card.Text style={{ color: '#6441A5'}} >Id : {userData.id}</Card.Text>
+            <Card.Text style={{ color: '#6441A5'}} >Date de création : {userData.created_at}</Card.Text>
+            <Card.Text style={{ color: '#6441A5'}} >Email : {userData.email}</Card.Text>
+            <Card.Text style={{ color: '#6441A5'}} >View count : {userData.view_count}</Card.Text>
+            <Button     style={{ color: '#6441A5' }} onClick={()=>redirectToTwitch(userData.login)} variant="light">Go to my Twitch Page</Button>
           </Card.Body>
           
         </Card>
