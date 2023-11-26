@@ -8,11 +8,10 @@ const GithubPage = () => {
   const [repositories, setRepositories] = useState([]);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
     const query = window.location.search;
     const urlParams = new URLSearchParams(query);
     const codeParam = urlParams.get("code");
-
+    var accessToken;
     async function getUserData() {
       const response = await fetch("http://localhost:3000/github/getUserData", {
         method: "GET",
@@ -45,27 +44,31 @@ const GithubPage = () => {
         }
       );
       const data = await response.json();
+      console.table(data);
       if (data.access_token) {
         localStorage.setItem("accessToken", data.access_token);
+        accessToken = localStorage.getItem("accessToken");
         console.log(data);
         return getUserData(); 
       }
     }
 
-    if (accessToken) {
+    if (localStorage.getItem("accessToken")) {
+      console.log("OUI ");
       getUserData().then(username => {
         if (username) {
           getUserRepos(username);
         }
       });
     } else if (codeParam) {
+      console.log("Y A PAS ACCESS TOKEN");
       getAccessToken().then(username => {
         if (username) {
           getUserRepos(username);
         }
       });
     }
-  }, []); // Assurez-vous de ne pas avoir de dépendances ici pour éviter les appels répétitifs
+  }, []); 
 
   return (
     <>
