@@ -51,10 +51,10 @@ SESSION_SECRET=SEEEECRET
 
 TWITCH_CLIENT_ID = v9e4a3teexxbsmeovv3bmq4tz02281
 TWITCH_SECRET    = 35kapw7g0q7uv5crba6powesd9bpeo
-SESSION_SECRET   = secret
 
 GITHUB_CLIENT_ID = 11d6bfcb9bff3259dba4
 GITHUB_CLIENT_SECRET = 7879cfa60edb6f2a4813d58c68870f031f3f2b76
+
 
 ```
 ## Base de données et confidentialité
@@ -67,6 +67,12 @@ Chaque méthode d'authentification est accessible via l'interface utilisateur du
 -**Azure**: Authentifiez-vous avec votre compte Azure et découvrez une fonctionnalité spéciale liée à Azure.
 
 -**Google**: Utilisez votre compte Google pour vous authentifier et explorez la fonctionnalité spéciale associée à Google.
+
+  **Pour vous authentifier avec google, veuillez utiliser le compte suivant car seuls les comptes approuvés sont autorisés :** 
+  ```
+mail : testgroupe15@gmail.com
+password : iplgroupe15
+  ```
 
 -**Discord**: Utilisez votre compte Discord pour vous authentifier et explorez la fonctionnalité spéciale associée à Discord.
 
